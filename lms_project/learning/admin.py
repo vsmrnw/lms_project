@@ -28,8 +28,7 @@ class LessonAdmin(admin.ModelAdmin):
 @admin.register(Tracking)
 class TrackingAdmin(admin.ModelAdmin):
     list_display = ('lesson', 'user', 'passed', )
-    list_display_links = ('lesson', 'user',)
-    search_fields = ('user', 'lesson', 'passed',)
+    search_fields = ('passed',)
     list_per_page = 3
     actions_on_top = False
     actions_selection_counter = True
