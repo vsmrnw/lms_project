@@ -42,3 +42,5 @@ class Tracking(models.Model):
 
     class Meta:
         ordering = ['-user']
+        verbose_name_plural = 'Активные уроки'
+        verbose_name = 'Активные уроки'
