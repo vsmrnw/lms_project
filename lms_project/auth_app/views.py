@@ -13,7 +13,7 @@ def login(request):
         else:
             return HttpResponse('Ваш аккаунт заблокирован')
     else:
-        return render(request, 'login')
+        return render(request, 'login.html')
 
 
 def register(request):

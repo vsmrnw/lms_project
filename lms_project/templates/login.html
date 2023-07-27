@@ -3,8 +3,7 @@
 {% block content %}
     <div class="main_container">
         <div class="main_item">
-
-            <form id="form" method="post">
+            <form id="form" method="POST">
                 <h3>{% block form_name %}Вход{% endblock %}</h3>
                 {% csrf_token %}
                 <p><input type="email" maxlength="256" placeholder="Email" name="email" required></p>
