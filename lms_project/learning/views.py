@@ -1,6 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from .models import Course, Lesson
+from django.shortcuts import render, redirect
+from .models import Course, Lesson, Tracking
 from datetime import datetime
 
 def create(request):
@@ -19,7 +19,17 @@ def detail(request, course_id):
 
 
 def enroll(request, course_id):
-    return HttpResponse(f'Страница для записи на курс {course_id}')
+    if request.user.is_anonymous:
+        return redirect('login')
+    else:
+        is_existed = Tracking.objects.filter(user=request.user).exists()
+        if is_existed:
+            return HttpResponse(f'Вы уже записаны на данный курс')
+        else:
+            lessons = Lesson.objects.filter(course=course_id)
+            records = [Tracking(lesson=lesson, user=request.user, passed=False) for lesson in lessons]
+            Tracking.objects.bulk_create(records)
+            return HttpResponse(f'Вы записаны на данный курс')
 
 
 def index(request):
