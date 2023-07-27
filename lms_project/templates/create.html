@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="main_container">
+        <div class="main_item">
+            <h3>Создание курса</h3>
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" maxlength="30" placeholder="Название курса" name="title">
+                <textarea placeholder="Описание курса" name="description" maxlength="200" required></textarea>
+                <input type="date" placeholder="Старт курса" name="start_date" required>
+                <input type="number" placeholder="Продолжительность" name="duration" required>
+                <input type="number" placeholder="Цена" >
+            </form>
+        </div>
+    </div>
+{% endblock %}

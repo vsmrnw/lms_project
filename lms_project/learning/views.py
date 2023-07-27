@@ -5,11 +5,19 @@ from datetime import datetime
 from django.contrib.auth import logout
 
 def create(request):
-    return HttpResponse('Страница создания нового курса')
+    if request.method == 'POST':
+        data = request.POST
+        Course.object.create(title=data['title'], author=request.user,
+                             description=data['description'], start_date=data['start_date'],
+                             duration=data['duration'], price=data['price'],
+                             count_lessons=data['count_lessons'])
+    else:
+        return render(request, 'create.html')
 
 
 def delete(request, course_id):
-    return HttpResponse(f'Страница для удаления {course_id} курса')
+    Course.objects.get(id=course_id).delete()
+    return redirect('index.html')
 
 
 def detail(request, course_id):

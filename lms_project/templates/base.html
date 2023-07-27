@@ -6,12 +6,17 @@
     <meta name="viewport" content="width=device-width initial-scale=1">
     <title>Edushka - {% block titile %}онлайн-курсы{% endblock %}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+            integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}styles.css">
+    <script defer src="{% static 'scripts.js' %}"></script>
 </head>
 <body>
     <header>
       <nav class="header_container">
         <div class="logo_container">
-          <a class="logo" href="{% url '' %"><img src="{% static 'img/logo.png'" alt="Лого сайта" title="Лого сайта"></a>
+          <a class="logo" href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" alt="Лого сайта" title="Лого сайта"></a>
             <div class="describer">
                 <div><h2 translate="no">Edushka</h2></div>
                 <div class="role">онлайн-курсы</div>
