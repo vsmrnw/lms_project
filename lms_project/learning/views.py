@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Course
+from .models import Course, Lesson
 from datetime import datetime
 
 def create(request):
@@ -12,7 +12,10 @@ def delete(request, course_id):
 
 
 def detail(request, course_id):
-    return HttpResponse(f'Страница информации о {course_id} курсе')
+    course = Course.objects.get(id=course_id)
+    lessons = Lesson.objects.filter(course=course_id)
+    context = {'course': course, 'lessons': lessons}
+    return render(request, 'detail.html', context)
 
 
 def enroll(request, course_id):
