@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="courses_container"></div>
+        {% for course in courses %}
+          <div class="course_preview">
+            <p><a href="{% url 'detail' course.pk %}">{{ course.title }}</a></p>
+            <p>{{ course.start_date }}</p>
+            <p>{{ course.description }}</p>
+            <P>{{ course.price }}</P>
+          </div>
+        {% endfor %}
+{% endblock %}

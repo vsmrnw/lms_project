@@ -1,5 +1,7 @@
 from django.http import HttpResponse
-
+from django.shortcuts import render
+from .models import Course
+from datetime import datetime
 
 def create(request):
     return HttpResponse('Страница создания нового курса')
@@ -18,4 +20,8 @@ def enroll(request, course_id):
 
 
 def index(request):
-    return HttpResponse('Страница отображения всех доступных курсов')
+    courses = Course.objects.all()
+    current_year = datetime.now().year
+    return render(request, context={'courses': courses,
+                                    'current_year': current_year},
+                  template_name='index.html')
