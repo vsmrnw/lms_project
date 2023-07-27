@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import User
 
-def login(request):
+def user_login(request):
     if request.method == 'POST':
         data = request.POST
         user = authenticate(email=data['email'], password=data['password'])
@@ -26,12 +26,12 @@ def register(request):
         login(request, user)
         return redirect('index')
     else:
-        return render(request, 'login.html')
+        return render(request, 'register.html')
 
 
-def logout(request):
+def user_logout(request):
     logout(request)
-    return redirect('login.html')
+    return redirect('user_login')
 
 
 def change_password(request):
