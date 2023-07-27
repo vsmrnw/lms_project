@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Course, Lesson, Tracking
 from datetime import datetime
+from django.contrib.auth import logout
 
 def create(request):
     return HttpResponse('Страница создания нового курса')
@@ -35,6 +36,5 @@ def enroll(request, course_id):
 def index(request):
     courses = Course.objects.all()
     current_year = datetime.now().year
-    return render(request, context={'courses': courses,
-                                    'current_year': current_year},
+    return render(request, context={'courses': courses},
                   template_name='index.html')
