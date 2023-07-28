@@ -6,7 +6,7 @@
             <p><a href="{% url 'detail' course.pk %}">{{ course.title }}</a></p>
             <p>{{ course.start_date }}</p>
             <p>{{ course.description }}</p>
-            <P>{{ course.price }}</P>
+            <p class="price">{{ course.price }} ₽</p>
           </div>
         {% endfor %}
     </div>

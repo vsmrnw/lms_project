@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <div class="main_container">
         <div class="main_item">
+            <form id='form' method="post">
             <h3>Создание курса</h3>
             <form method="post">
                 {% csrf_token %}
@@ -9,7 +11,8 @@
                 <textarea placeholder="Описание курса" name="description" maxlength="200" required></textarea>
                 <input type="date" placeholder="Старт курса" name="start_date" required>
                 <input type="number" placeholder="Продолжительность" name="duration" required>
-                <input type="number" placeholder="Цена" >
+                <input type="number" placeholder="Цена" name="price" minlength="1" required >
+                <input type="number" placeholder="Количество уроков" name="count_lessons">
             </form>
         </div>
     </div>

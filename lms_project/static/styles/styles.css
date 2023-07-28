@@ -202,6 +202,7 @@ input, textarea {
     justify-content: center;
     grid-template-columns: repeat(4, 25%);
     grid-gap: 30px;
+
 }
 .course_preview {
     border: 1px solid rgba(0, 0, 0, 0.29);
@@ -251,10 +252,13 @@ footer {
 }
 .footer_container {
     width: 65%;
-    margin-left: 6%;
+    margin-left: 2%;
     font-size: .5em;
 }
 .footer_container .title {
+    font-size: 1.1em;
+}
+.footer_container .privacy {
     font-size: 1.1em;
 }
 .copyright-mark img {
