@@ -41,11 +41,12 @@ img {
     height: 25%;
 }
 .logo_container {
-    display: flex;
+    display: bottom;
     flex-direction: fow;
+    width: 20%;
 }
 .logo {
-    display: flex;
+    display: bottom;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -54,8 +55,11 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-left: 90px;
+    margin-top: -25%;
+    font-size: 20px;
 }
-.describer .title, .footer-footer_container .title {
+.describer .title .footer-footer_container .title {
     font-family: "Mochiy Pop P One", Helvetica, Arial ,sans-serif;
     font-size: .8em;
     letter-spacing: .05em;
@@ -130,6 +134,7 @@ main {
     display: flex;
     width: 100%;
     justify-content: center;
+    padding: 50px;
 }
 .main_item {
     width: 30%;
@@ -244,14 +249,15 @@ input, textarea {
 /* Footer styles */
 
 footer {
-    position: fixed;
+    padding-bottom: 5px;
     left: 0;
     bottom: 0;
     width: 100%;
     background: #e0e6ed;
 }
 .footer_container {
-    width: 65%;
+    position: bottom;
+    width: 80%;
     margin-left: 2%;
     font-size: .5em;
 }
@@ -260,7 +266,14 @@ footer {
 }
 .footer_container .privacy {
     font-size: 1.1em;
+    white-space: nowrap;
+    margin-left: 15px;
+}
+.footer_container .tern {
+    font-size: 1.1em;
+    white-space: nowrap;
 }
 .copyright-mark img {
-    width: 7%;
+    width: 6.5%;
+    margin-top: 15px;
 }
