@@ -56,7 +56,7 @@ img {
     flex-direction: column;
     align-items: center;
     margin-left: 90px;
-    margin-top: -25%;
+    margin-top: -28%;
     font-size: 20px;
 }
 .describer .title .footer-footer_container .title {
@@ -242,9 +242,21 @@ input, textarea {
     -webkit-box-shadow: 0 0 40px 2px #fa94056e;
     -moz-box-shadow: 0 0 40px 2px #fa94056e;
 }
+.title {
+    font-size: 30px;
+}
+.role {
+    font-size: 20px;
+}
 .price {
     color: #0ba5189c;
     font-weight: bold
+}
+.course_title {
+    font-size: 30px;
+}
+.course_detail {
+    font-size: 20px;
 }
 /* Footer styles */
 

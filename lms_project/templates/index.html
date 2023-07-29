@@ -3,10 +3,12 @@
     <div class="courses_container">
         {% for course in courses %}
           <div class="course_preview">
-            <p><a href="{% url 'detail' course.pk %}">{{ course.title }}</a></p>
-            <p>{{ course.start_date }}</p>
+            <p><a class="course_title" href="{% url 'detail' course.pk %}">{{ course.title }}</a></p>
+            <div class="course_detail">
+                <p>{{ course.start_date }}</p>
             <p>{{ course.description }}</p>
-            <p class="price">{{ course.price }} ₽</p>
+                <p class="price">{{ course.price }} ₽</p>
+            </div>
           </div>
         {% endfor %}
     </div>
