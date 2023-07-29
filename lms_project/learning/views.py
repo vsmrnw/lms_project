@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Course, Lesson, Tracking
 from datetime import datetime
-from django.contrib.auth import logout
+
 
 def create(request):
     if request.method == 'POST':
@@ -17,7 +17,7 @@ def create(request):
 
 def delete(request, course_id):
     Course.objects.get(id=course_id).delete()
-    return redirect('index.html')
+    return redirect('index')
 
 
 def detail(request, course_id):
