@@ -7,10 +7,11 @@ from datetime import datetime
 def create(request):
     if request.method == 'POST':
         data = request.POST
-        Course.object.create(title=data['title'], author=request.user,
+        Course.objects.create(title=data['title'], author=request.user,
                              description=data['description'], start_date=data['start_date'],
                              duration=data['duration'], price=data['price'],
                              count_lessons=data['count_lessons'])
+        return redirect('index')
     else:
         return render(request, 'create.html')
 
