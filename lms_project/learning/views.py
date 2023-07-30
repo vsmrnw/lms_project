@@ -8,9 +8,9 @@ def create(request):
     if request.method == 'POST':
         data = request.POST
         Course.objects.create(title=data['title'], author=request.user,
-                             description=data['description'], start_date=data['start_date'],
-                             duration=data['duration'], price=data['price'],
-                             count_lessons=data['count_lessons'])
+                              description=data['description'], start_date=data['start_date'],
+                              duration=data['duration'], price=data['price'],
+                              count_lessons=data['count_lessons'])
         return redirect('index')
     else:
         return render(request, 'create.html')
@@ -37,7 +37,8 @@ def enroll(request, course_id):
             return HttpResponse(f'Вы уже записаны на данный курс')
         else:
             lessons = Lesson.objects.filter(course=course_id)
-            records = [Tracking(lesson=lesson, user=request.user, passed=False) for lesson in lessons]
+            records = [Tracking(lesson=lesson, user=request.user,
+                                passed=False) for lesson in lessons]
             Tracking.objects.bulk_create(records)
             return HttpResponse(f'Вы записаны на данный курс')
 

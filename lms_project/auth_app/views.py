@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import User
 
+
 def user_login(request):
     if request.method == 'POST':
         data = request.POST
