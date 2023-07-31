@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Course, Lesson, Tracking
 from datetime import datetime
-
+from .forms import CourseForm
+from django.urls import reverse
 
 
 class MainView(ListView):
@@ -31,17 +32,19 @@ class CourseDetailView(DetailView):
         context['lessons'] = Lesson.objects.filter(course=self.kwargs.get('course_id'))
         return context
 
-def create(request):
-    if request.method == 'POST':
-        data = request.POST
-        Course.objects.create(title=data['title'], author=request.user,
-                              description=data['description'], start_date=data['start_date'],
-                              duration=data['duration'], price=data['price'],
-                              count_lessons=data['count_lessons'])
-        return redirect('index')
-    else:
-        return render(request, 'create.html')
+class CourseCreateView(CreateView):
+    template_name = 'create.html'
+    model = Course
+    form_class = CourseForm
 
+    def get_success_url(self):
+        return reverse('detail', kwargs={'course_id': self.object.id})
+
+    def form_valid(self, form):
+        course = form.save(commit=False)
+        course.author = self.request.user
+        course.save()
+        return super(CourseCreateView, self).form_valid(form)
 
 def delete(request, course_id):
     Course.objects.get(id=course_id).delete()

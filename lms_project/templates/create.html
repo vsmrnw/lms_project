@@ -4,14 +4,9 @@
     <div class="main_container">
         <div class="main_item">
             <form id='form' method="post">
-            <h3>Создание курса</h3>
+            <h3>{% block form_name %}Создание курса {% endblock %}</h3>
                 {% csrf_token %}
-                <input type="text" maxlength="30" placeholder="Название курса" name="title">
-                <textarea placeholder="Описание курса" name="description" maxlength="200" required></textarea>
-                <input type="date" placeholder="Старт курса" name="start_date" required>
-                <input type="number" placeholder="Продолжительность" name="duration" required>
-                <input type="number" placeholder="Цена" name="price" minlength="1" required >
-                <input type="number" placeholder="Количество уроков" name="count_lessons">
+                {{ form.as_p }}
                 <p><button type="submit">Создать</button></p>
             </form>
         </div>
