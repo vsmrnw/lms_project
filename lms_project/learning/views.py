@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Course, Lesson, Tracking
 from datetime import datetime
 
@@ -15,6 +15,20 @@ class MainView(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(MainView, self).get_context_data(**kwargs)
         context['current_year'] = datetime.now().year
+        return context
+
+
+class CourseDetailView(DetailView):
+    template_name = 'detail.html'
+    context_object_name = 'course'
+    pk_url_kwarg = 'course_id'
+
+    def get_queryset(self):
+        return Course.objects.filter(id=self.kwargs.get('course_id'))
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseDetailView, self).get_context_data(**kwargs)
+        context['lessons'] = Lesson.objects.filter(course=self.kwargs.get('course_id'))
         return context
 
 def create(request):
