@@ -6,5 +6,5 @@ urlpatterns = [
     path('delete/<int:course_id>', delete, name='delete'),
     re_path('^detail/(?P<course_id>[1-9])/$', detail, name='detail'),
     re_path('^enroll/(?P<course_id>[1-9]|1[0-5])/$', enroll, name='enroll'),
-    path('', index, name='index'),
+    path('', MainView.as_view(), name='index'),
 ]

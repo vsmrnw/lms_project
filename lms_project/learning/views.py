@@ -1,8 +1,21 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 from .models import Course, Lesson, Tracking
 from datetime import datetime
 
+
+
+class MainView(ListView):
+    template_name = 'index.html'
+    queryset = Course.objects.all()
+    context_object_name = 'courses'
+    paginate_by = 2
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(MainView, self).get_context_data(**kwargs)
+        context['current_year'] = datetime.now().year
+        return context
 
 def create(request):
     if request.method == 'POST':
@@ -41,10 +54,3 @@ def enroll(request, course_id):
                                 passed=False) for lesson in lessons]
             Tracking.objects.bulk_create(records)
             return HttpResponse(f'Вы записаны на данный курс')
-
-
-def index(request):
-    courses = Course.objects.all()
-    current_year = datetime.now().year
-    return render(request, context={'courses': courses},
-                  template_name='index.html')
