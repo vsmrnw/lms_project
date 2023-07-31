@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Course, Lesson, Tracking
 from datetime import datetime
@@ -29,8 +29,10 @@ class CourseDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
-        context['lessons'] = Lesson.objects.filter(course=self.kwargs.get('course_id'))
+        context['lessons'] = Lesson.objects.filter(
+            course=self.kwargs.get('course_id'))
         return context
+
 
 class CourseCreateView(CreateView):
     template_name = 'create.html'
@@ -46,16 +48,30 @@ class CourseCreateView(CreateView):
         course.save()
         return super(CourseCreateView, self).form_valid(form)
 
-def delete(request, course_id):
-    Course.objects.get(id=course_id).delete()
-    return redirect('index')
+
+class CourseUpdateView(UpdateView):
+    model = Course
+    form_class = CourseForm
+    template_name = 'create.html'
+    pk_url_kwarg = 'course_id'
+
+    def get_queryset(self):
+        return Course.objects.filter(id=self.kwargs.get('course_id'))
+
+    def get_success_url(self):
+        return reverse('detail', kwargs={'course_id': self.object.id})
 
 
-def detail(request, course_id):
-    course = Course.objects.get(id=course_id)
-    lessons = Lesson.objects.filter(course=course_id)
-    context = {'course': course, 'lessons': lessons}
-    return render(request, 'detail.html', context)
+class CourseDeleteView(DeleteView):
+    model = Course
+    template_name = 'delete.html'
+    pk_url_kwarg = 'course_id'
+
+    def get_queryset(self):
+        return Course.objects.filter(id=self.kwargs.get('course_id'))
+
+    def get_success_url(self):
+        return reverse('index')
 
 
 def enroll(request, course_id):
