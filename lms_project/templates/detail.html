@@ -14,7 +14,7 @@
         </div>
         <div class="course_preview" style="margin-top: 1%; box-shadow: none; border: none"></div>
             {% with count_lessons=lessons.count %}
-            <p style="font-weight: bold">Уроки {{ count_lessons }}</p>
+            <p style="font-weight: bold">Всего уроков {{ count_lessons }}</p>
             {% endwith %}
             {% for lesson in lessons %}
                 <p style="font-weight: bold">{{ forloop.counter }}. {{ lesson.name }}</p>
