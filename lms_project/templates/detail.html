@@ -3,7 +3,7 @@
     <div class="course_container">
         <div class="course_preview" style="transform: none; box-shadow: none; border: none">
             <p><a style="color: red" href="{% url 'delete' course.pk %}">Удалить</a></p>
-            <p><a style="color: blue" href="{% url 'update' course.pk %}">Редактировать</a></p>
+            <p><a style="color: blue" href="{% url 'update' course.pk %}">Редактировать </a></p>
             <p>{{ course.title }}</p>
             <p>Автор: {{ course.author.last_name }} {{ course.author.first_name }}</p>
             <p>Старт: {{ course.start_date }}</p>
@@ -13,13 +13,16 @@
             <p><span class="price">{{ course.price }} ₽</span></p>
         </div>
         <div class="course_preview" style="margin-top: 1%; box-shadow: none; border: none"></div>
-            <p style="font-weight: bold">Список уроков:</p>
+            {% with count_lessons=lessons.count %}
+            <p style="font-weight: bold">Уроки {{ count_lessons }}</p>
+            {% endwith %}
             {% for lesson in lessons %}
-            {{ counter }}
-                <p>{{ lesson.name }}</p>
+                <p style="font-weight: bold">{{ forloop.counter }}. {{ lesson.name }}</p>
                 <p>{{ lesson.preview }}</p>
+            {% empty %}
+                <p>Уроки пока не добавлены</p>
             {% endfor %}
-            <form id='form' method="post" action="{% url 'enroll' course.pk %}">
+            <form method="post" action="{% url 'enroll' course.pk %}">
                 {% csrf_token %}
                 <input type="submit" value="Записаться">
             </form>
