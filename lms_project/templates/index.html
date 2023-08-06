@@ -12,6 +12,8 @@
                 <p class="price">{{ course.price }} ₽</p>
             </div>
           </div>
+        {% empty %}
+            <p>На данный момент не найдено ни одного курса. Проверьте страницу позднее.</p>
         {% endfor %}
     </div>
 {% endblock %}
