@@ -4,12 +4,12 @@
         {% now 'SHORT_DATETIME_FORMAT' %}
         {% for course in courses %}
           <div class="course_preview">
-            <p><a class="course_title" href="{% url 'detail' course.pk %}">{{ course.title }}</a></p>
+            <p><a class="course_title" href="{% url 'detail' course.pk %}">{{ course.title|title }}</a></p>
               <p>{{ course.start_date|date:"j E" }}</p>
             <div class="course_detail">
                 <p>{{ course.start_date }}</p>
-                <p>{{ course.description }}</p>
-                <p class="price">{{ course.price }} ₽</p>
+                <p>{{ course.description|capfirst }}</p>
+                <p class="price">{{ course.price|default:'Бесплатно' }} ₽</p>
             </div>
           </div>
         {% empty %}
