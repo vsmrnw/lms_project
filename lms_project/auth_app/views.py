@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import Group
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -31,11 +31,6 @@ def register(request):
         return redirect('index')
     else:
         return render(request, 'register.html')
-
-
-def user_logout(request):
-    logout(request)
-    return redirect('user_login')
 
 
 def change_password(request):

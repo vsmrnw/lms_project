@@ -80,6 +80,7 @@ class CourseDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('index')
 
+
 @login_required
 @permission_required('learning.add_tracking', raise_exception=True)
 def enroll(request, course_id):
