@@ -27,7 +27,7 @@
           <div class="auth_container">
               {% if user.is_authenticated %}
                 <div class="profile">
-                    <a href="#">{{ user.last_name }} {{ user.first_name }}</a>
+                    <div><a href="#">{{ user.last_name }} {{ user.first_name }}</a></div>
                     <div class="submenu_profile" style="display: none;">
                         <div>
                             <p class="fa fa-sign-out"></p>

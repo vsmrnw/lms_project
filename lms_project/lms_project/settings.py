@@ -137,6 +137,6 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "auth_app.User"
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'user_login'
 LOGIN_REDIRECT_URL = 'index'
-LOGOUT_URL = 'logout'
+LOGOUT_URL = 'user_logout'
