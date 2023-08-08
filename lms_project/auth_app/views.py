@@ -20,11 +20,13 @@ def user_login(request):
 def register(request):
     if request.method == 'POST':
         data = request.POST
-        user = User(email=data['email'], first_name=data['first_name'], last_name=data['last_name'],
+        new_user = User(email=data['email'], first_name=data['first_name'], last_name=data['last_name'],
                     birthday=data['birthday'], description=data['description'], avatar=data['avatar'])
-        user.set_password(data['password'])
-        user.save()
-        login(request, user)
+        new_user.set_password(data['password'])
+        new_user.save()
+        pupil = Group.objects.filter(name='Ученик')
+        new_user.groups.set(pupil)
+        login(request, new_user)
         return redirect('index')
     else:
         return render(request, 'register.html')
