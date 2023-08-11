@@ -200,7 +200,7 @@ input, textarea {
     background: #fa9405bf;
     margin-top: 10px;
 }
-.courses_container {
+.courses_container, .reviews_container {
     display: grid;
     width: 90%;
     margin: 5% 8%;
@@ -209,13 +209,28 @@ input, textarea {
     grid-gap: 30px;
 
 }
-.course_preview {
+.course_preview, .review{
     border: 1px solid rgba(0, 0, 0, 0.29);
     border-radius: 20px;
     font-size: .65em;
     line-height: 1.5em;
     width: 90%;
     padding: 3%;
+}
+.reviews_container {
+    margin-top: 3%;
+}
+.review p:ntg-child(2) {
+    font-weight: bold;
+}
+.review p:nth-child(3) {
+    opacity: 0.9;
+    font-size: .8em;
+    padding: 3% 1%;
+}
+review_img {
+    border-radius: 50%;
+    width: 19%;
 }
 .course_preview:nth-child(2) {
     margin: 0% 2.5%;

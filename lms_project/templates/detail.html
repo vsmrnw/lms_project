@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
     <div class="course_container">
         <div class="course_preview" style="transform: none; box-shadow: none; border: none">
@@ -24,14 +25,27 @@
             {% endfor %}
             <form method="post" action="{% url 'enroll' course.pk %}">
                 {% csrf_token %}
-                <input type="submit" value="Записаться">
+                <button type="submit">Записаться</button>
             </form>
+        </div>
+        <p style="font-weight: bold; margin-left: 5.5%">
+            Отзывы
+            <span style="font-weight: initial; font-size: .85em">{{ reviews.count }}</span>
+            <a href="{% url 'review' course.pk">Оставить отзыв</a>
+        </p>
         <div class="reviews_container">
             {% for review in reviews %}
+            <div class="review">
+                {% if review.user.avatar %}
+                    <img src="{{ review.user.avatar.url }}">
+                {% else %}
+                    <img src="{% static 'avatar.png' %}">
+                {% endif %}
                 {{ review.user.last_name }} {{ review.user.first_name }}
                 {{ review.content }}
+             </div>
             {% empty %}
-                <p>Отзывов пока нет. Ваша <a href="{% url 'review' course.pk %}">оценка</a> важна</p>
+                <p>Отзывов пока нет. Ваша <a href="{% url 'review' course.pk %}">Оценка</a> важна</p>
             {% endfor %}
         </div>
         </div>
