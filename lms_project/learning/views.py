@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Course, Lesson, Tracking
+from .models import Course, Lesson, Tracking, Review
 from datetime import datetime
 from .forms import CourseForm
 from django.urls import reverse
@@ -32,6 +33,7 @@ class CourseDetailView(DetailView):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
         context['lessons'] = Lesson.objects.filter(
             course=self.kwargs.get('course_id'))
+        context['reviews'] = Review.objects.filter(course=self.kwargs.get('course_id'))
         return context
 
 
@@ -40,7 +42,7 @@ class CourseCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Course
     form_class = CourseForm
 
-    permission_required = ('learning.add_course', )
+    permission_required = ('learning.add_course',)
 
     def get_success_url(self):
         return reverse('detail', kwargs={'course_id': self.object.id})
@@ -58,7 +60,7 @@ class CourseUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'create.html'
     pk_url_kwarg = 'course_id'
 
-    permission_required = ('learning.change_course', )
+    permission_required = ('learning.change_course',)
 
     def get_queryset(self):
         return Course.objects.filter(id=self.kwargs.get('course_id'))
@@ -72,7 +74,7 @@ class CourseDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     template_name = 'delete.html'
     pk_url_kwarg = 'course_id'
 
-    permission_required = ('learning.delete_course', )
+    permission_required = ('learning.delete_course',)
 
     def get_queryset(self):
         return Course.objects.filter(id=self.kwargs.get('course_id'))
@@ -93,3 +95,9 @@ def enroll(request, course_id):
                             passed=False) for lesson in lessons]
         Tracking.objects.bulk_create(records)
         return HttpResponse(f'Вы записаны на данный курс')
+
+
+@login_required
+def review(request, course_id):
+    if request.method == 'GET':
+        return render(request, 'review.html')
