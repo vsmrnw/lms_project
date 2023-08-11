@@ -57,3 +57,16 @@ class Tracking(models.Model):
         ordering = ['-user']
         verbose_name_plural = 'Активные уроки'
         verbose_name = 'Активные уроки'
+
+
+class Review(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Ученик')
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name='Курс')
+    content = models.TextField(verbose_name='Текст отзыва', max_length=250, unique_for_year='sent_date')
+    send_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Отзывы'
+        verbose_name = 'Отзыв'
+        ordering = ('-send_date', )
+        unique_together = ('user', 'course', )
