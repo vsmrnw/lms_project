@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.exceptions import NON_FIELD_ERRORS
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Course, Lesson, Tracking, Review
 from datetime import datetime
-from .forms import CourseForm
+from .forms import CourseForm, ReviewForm
 from django.urls import reverse
 
 
@@ -32,7 +33,8 @@ class CourseDetailView(DetailView):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
         context['lessons'] = Lesson.objects.filter(
             course=self.kwargs.get('course_id'))
-        context['reviews'] = Review.objects.filter(course=self.kwargs.get('course_id'))
+        context['reviews'] = Review.objects.filter(
+            course=self.kwargs.get('course_id'))
         return context
 
 
@@ -97,6 +99,19 @@ def enroll(request, course_id):
 
 
 @login_required
+@permission_required('learning.add_review', raise_exception=True)
 def review(request, course_id):
-    if request.method == 'GET':
-        return render(request, 'review.html')
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.errors:
+            errors = form.errors(NON_FIELD_ERRORS)
+            return render(request, 'review.html', {'form': form, 'errors': errors})
+        if form.is_valid():
+            data = form.cleaned_data
+            Review.objects.create(content=data['content'],
+                                  course=Course.objects.get(id=course_id),
+                                  user=request.user)
+        return redirect(reverse('detail', kwargs={'course_id': course_id}))
+    else:
+        form = ReviewForm()
+        return render(request, 'review.html', {'form': form})

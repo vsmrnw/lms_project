@@ -36,6 +36,7 @@ class TrackingAdmin(admin.ModelAdmin):
     actions_selection_counter = True
     actions_on_bottom = True
 
+
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('user', 'content', )

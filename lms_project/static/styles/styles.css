@@ -140,7 +140,7 @@ main {
     width: 30%;
     text-align: center;
 }
-#form {
+form {
     height: 105%;
     padding: 4%;
     border: 2px solid #fa9405;
@@ -149,7 +149,7 @@ main {
     font-size: .6em;
     z-index: 22;
 }
-#form h3 {
+form h3 {
     font-style: italic;
     text-align: center;
     font-size: 2em;
@@ -160,11 +160,11 @@ input, textarea {
     outline: none;
     margin-bottom: 2%;
 }
-#form input, #form textarea {
+form input, #form textarea {
     outline: none;
     margin-bottom: 2%;
 }
-#form input, #form textarea {
+form input, form textarea {
     width: 92%;
     padding: 10px 5px 10px 32px;
     font-size: large;
@@ -174,16 +174,16 @@ input, textarea {
     border-radius: 3px;
 }
 
-#form input:active,#form input:focus,
-#form textarea:active, #form textarea:focus
+form input:active,#form input:focus,
+form textarea:active, #form textarea:focus
 {
     border: 1px solid #fa9405;
     background: rgba(238, 236, 240, 0.2);
     box-shadow: 0 1px 4px 0 #fa940559 inset;
 }
-#form button {
+form button {
     width: 40%;
-    float: right;
+    float: left;
     cursor: pointer;
     background: #fa9405;
     padding: 8px 5px;
@@ -191,16 +191,17 @@ input, textarea {
     color: #000;
     font-size: .9em;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-    border-radius: 3px;
+    border-radius: 30px;
+    border: 2px solid #000000;
     box-shadow: 0 1px 6px 4px #fa940559 inset;
     transition: all .2s ease-in-out;
 }
 
-#form button:hover {
+form button:hover {
     background: #fa9405bf;
     margin-top: 10px;
 }
-.courses_container, .reviews_container {
+.courses_container .reviews_container {
     display: grid;
     width: 90%;
     margin: 5% 8%;
@@ -209,7 +210,7 @@ input, textarea {
     grid-gap: 30px;
 
 }
-.course_preview, .review{
+.course_preview .review{
     border: 1px solid rgba(0, 0, 0, 0.29);
     border-radius: 20px;
     font-size: .65em;
