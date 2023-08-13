@@ -104,7 +104,7 @@ def review(request, course_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.errors:
-            errors = form.errors(NON_FIELD_ERRORS)
+            errors = form.errors[NON_FIELD_ERRORS]
             return render(request, 'review.html', {'form': form, 'errors': errors})
         if form.is_valid():
             data = form.cleaned_data
