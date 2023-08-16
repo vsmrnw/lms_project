@@ -2,13 +2,13 @@
 {% load static %}
 {% block content %}
     <div class="course_container">
-        {% with course_var=lessons.first %}
+        {% with course_var=lessons.first.course %}
         <div class="course_preview" style="transform: none; box-shadow: none; border: none">
             <p><a style="color: red" href="{% url 'delete' course_var.pk %}">Удалить</a></p>
             <p><a style="color: blue" href="{% url 'update' course_var.pk %}">Редактировать </a></p>
-            <p>{{ course_var.course.title }}</p>
+            <p>{{ course_var.title }}</p>
 
-            {% with authors=course_var.course.authors.all %}
+            {% with authors=course_var.authors.all %}
                 {% if authors|length == 1 %}
                 <p>Автор: {{ authors.0.last_name }} {{ authors.0.first_name  }}</p>
                 {% else %}
@@ -20,10 +20,10 @@
                     </p>
                 {% endif %}
             {% endwith %}
-            <p>Старт: {{ course_var.course.start_date }}</p>
-            <p>Продолжительность: {{ course_var.first.course.duration }} месяцев/-a</p>
-            <p>Кол-во уроков: {{ course_var.first.course.count_lessons }}</p>
-            <p>{{ course_var.course.description }}</p>
+            <p>Старт: {{ course_var.start_date }}</p>
+            <p>Продолжительность: {{ course_var.first.duration }} месяцев/-a</p>
+            <p>Кол-во уроков: {{ course_var.first.count_lessons }}</p>
+            <p>{{ course_var.description }}</p>
             <p><span class="price">{{ course.price }}</span></p>
         </div>
         <div class="preview" style="margin-top: 1%; transform: none; box-shadow: none; border: none">
