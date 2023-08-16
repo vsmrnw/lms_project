@@ -21,23 +21,6 @@ class MainView(ListView):
         return context
 
 
-class CourseDetailView(DetailView):
-    template_name = 'detail.html'
-    context_object_name = 'course'
-    pk_url_kwarg = 'course_id'
-
-    def get_queryset(self):
-        return Course.objects.filter(id=self.kwargs.get('course_id'))
-
-    def get_context_data(self, **kwargs):
-        context = super(CourseDetailView, self).get_context_data(**kwargs)
-        context['lessons'] = Lesson.objects.filter(
-            course=self.kwargs.get('course_id'))
-        context['reviews'] = Review.objects.filter(
-            course=self.kwargs.get('course_id'))
-        return context
-
-
 class CourseCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     template_name = 'create.html'
     model = Course
@@ -53,6 +36,21 @@ class CourseCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         course.author = self.request.user
         course.save()
         return super(CourseCreateView, self).form_valid(form)
+
+
+class CourseDetailView(ListView):
+    template_name = 'detail.html'
+    context_object_name = 'lessons'
+    pk_url_kwarg = 'course_id'
+
+    def get_queryset(self):
+        return Lesson.objects.select_related('course').filter(id=self.kwargs.get('course_id'))
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseDetailView, self).get_context_data(**kwargs)
+        context['reviews'] = Review.objects.select_related('user').filter(
+            course=self.kwargs.get('course_id'))
+        return context
 
 
 class CourseUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
