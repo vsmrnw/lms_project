@@ -91,6 +91,7 @@ DATABASES = {
         'USER': os.getenv('USER_DB'),
         'PASSWORD': os.getenv('PASSWORD_DB'),
         'NAME': 'lms_project',
+        'ATOMIC_REQUEST': True,
     }
 }
 

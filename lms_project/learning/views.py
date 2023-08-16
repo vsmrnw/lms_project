@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import NON_FIELD_ERRORS
+from django.db.models import Q
+from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -32,10 +34,11 @@ class CourseCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         return reverse('detail', kwargs={'course_id': self.object.id})
 
     def form_valid(self, form):
-        course = form.save(commit=False)
-        course.author = self.request.user
-        course.save()
-        return super(CourseCreateView, self).form_valid(form)
+        with transaction.atomic():
+            course = form.save(commit=False)
+            course.author = self.request.user
+            course.save()
+            return super(CourseCreateView, self).form_valid(form)
 
 
 class CourseDetailView(ListView):
@@ -81,7 +84,7 @@ class CourseDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('index')
 
-
+@transaction.atomic
 @login_required
 @permission_required('learning.add_tracking', raise_exception=True)
 def enroll(request, course_id):
@@ -95,7 +98,7 @@ def enroll(request, course_id):
         Tracking.objects.bulk_create(records)
         return HttpResponse(f'Вы записаны на данный курс')
 
-
+@transaction.non_atomic_requests
 @login_required
 @permission_required('learning.add_review', raise_exception=True)
 def review(request, course_id):
