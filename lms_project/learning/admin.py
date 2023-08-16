@@ -6,7 +6,7 @@ from .models import Course, Lesson, Tracking, Review
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'start_date', 'description', )
+    list_display = ('title', 'start_date', 'description', )
     list_display_links = ('title', 'start_date', )
     list_editable = ('description', )
     search_fields = ('^title', )
@@ -14,6 +14,7 @@ class CourseAdmin(admin.ModelAdmin):
     actions_on_top = True
     actions_selection_counter = True
     actions_on_bottom = True
+    filter_horizontal = ('authors', )
 
 
 @admin.register(Lesson)
