@@ -21,8 +21,8 @@
                 {% endif %}
             {% endwith %}
             <p>Старт: {{ course_var.start_date }}</p>
-            <p>Продолжительность: {{ course_var.duration }} месяцев/-a</p>
-            <p>Кол-во уроков: {{ course_var.count_lessons }}</p>
+            <p>Продолжительность: {{course_var.duration}} месяцев/-a</p>
+            <p>Кол-во уроков: {{course_var.count_lessons}}</p>
             <p>{{ course_var.description }}</p>
             <p><span class="price">{{ course.price }}</span></p>
         </div>
@@ -42,7 +42,7 @@
 
         <p style="font-weight: bold; margin-left: 5.5%">
             Отзывы
-            <span style="font-weight: initial; font-size: .85em">{{ reviews.count }}</span>
+            <span style="font-weight: initial; font-size: .85em">{{reviews.count}}</span>
             <a href="{% url 'review' course_var.pk %}">Оставить отзыв</a>
         </p>
         <div class="reviews_container">

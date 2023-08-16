@@ -47,7 +47,7 @@ class CourseDetailView(ListView):
     pk_url_kwarg = 'course_id'
 
     def get_queryset(self):
-        return Lesson.objects.select_related('course').filter(id=self.kwargs.get('course_id'))
+        return Lesson.objects.select_related('course').filter(course=self.kwargs.get('course_id'))
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
@@ -84,6 +84,7 @@ class CourseDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('index')
 
+
 @transaction.atomic
 @login_required
 @permission_required('learning.add_tracking', raise_exception=True)
@@ -97,6 +98,7 @@ def enroll(request, course_id):
                             passed=False) for lesson in lessons]
         Tracking.objects.bulk_create(records)
         return HttpResponse(f'Вы записаны на данный курс')
+
 
 @transaction.non_atomic_requests
 @login_required
