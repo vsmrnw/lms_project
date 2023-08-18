@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Course, Lesson, Tracking, Review
 from datetime import datetime
-from .forms import CourseForm, ReviewForm
+from .forms import CourseForm, ReviewForm, LessonForm
 from django.urls import reverse
 
 
@@ -83,6 +83,24 @@ class CourseDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return reverse('index')
+
+
+class LessonCreateView(CreateView, LoginRequiredMixin, PermissionRequiredMixin):
+    model = Lesson
+    form_class = LessonForm
+    template_name = 'create_lesson.html'
+    pk_url_kwarg = 'course_id'
+
+    permission_required = ('learning.add_lesson', )
+
+    def get_success_url(self):
+        return reverse('detail', kwargs={'course_id': self.kwargs.get('course_id')})
+
+    def get_form(self, form_class=None):
+        form = super(LessonCreateView, self).get_form()
+        form.fields['course'].queryset = Course.objects.filter(
+            authors=self.request.user)
+        return form
 
 
 @transaction.atomic

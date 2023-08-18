@@ -8,5 +8,7 @@ urlpatterns = [
     path('detail/<int:course_id>/', CourseDetailView.as_view(), name='detail'),
     path('update/<int:course_id>/', CourseUpdateView.as_view(), name='update'),
     path('enroll/<int:course_id>/', enroll, name='enroll'),
-    path('review/<int:course_id>/', review, name='review')
+    path('review/<int:course_id>/', review, name='review'),
+    path('<int:course_id>/create_lesson/',
+         LessonCreateView.as_view(), name='create_lesson')
 ]
