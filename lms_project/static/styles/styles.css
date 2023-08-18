@@ -174,14 +174,17 @@ form input, form textarea {
     border-radius: 3px;
 }
 
-form input:active,#form input:focus,
-form textarea:active, #form textarea:focus
+#form input:active, #form input:focus,
+#form textarea:active, #form textarea:focus
 {
     border: 1px solid #fa9405;
     background: rgba(238, 236, 240, 0.2);
     box-shadow: 0 1px 4px 0 #fa940559 inset;
 }
-form button {
+.error_field textarea {
+    background: #ffe8e8;
+}
+#form button {
     width: 40%;
     float: left;
     cursor: pointer;
