@@ -22,21 +22,15 @@ class LessonForm(forms.ModelForm):
                                     required=True, label='Курс', help_text='Укажите курс к которому хотите '
                                                                            'добавить урок!')
     preview = forms.CharField(widget=Textarea(
-        attrs={'placeholder': 'Опишите содержание урока', 'rows': 20, 'cols': 35, }), label='')
+        attrs={'placeholder': 'Опишите содержание урока',
+               'rows': 20,
+               'cols': 35, }), label='')
     error_css_class = 'error_field'
     required_css_class = 'required_field'
 
     class Meta:
         model = Lesson
         fields = ('name', 'preview', 'course', )
-        labels = {'name': '', 'preview': '', 'course': ''}
-        widgets = {'name': TextInput(attrs={'placeholder': 'Введите название урока'}),
-                   'preview': Textarea(attrs={
-                       'placeholder': 'Опишите содержание урока',
-                       'rows': 20,
-                       'cols': 35, })
-                   }
-        help_texts = {'preview': 'Описание не должно быть пустым'}
 
     def clean_preview(self):
         preview_data = self.cleaned_data['preview']
