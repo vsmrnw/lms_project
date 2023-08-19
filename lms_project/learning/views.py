@@ -105,7 +105,7 @@ class CourseDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
         return reverse('index')
 
 
-class LessonCreateView(CreateView, LoginRequiredMixin, PermissionRequiredMixin):
+class LessonCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Lesson
     form_class = LessonForm
     template_name = 'create_lesson.html'

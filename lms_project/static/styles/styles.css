@@ -181,12 +181,6 @@ form input, form textarea {
     background: rgba(238, 236, 240, 0.2);
     box-shadow: 0 1px 4px 0 #fa940559 inset;
 }
-.error_field textarea {
-    background: #ffe8e8;
-}
-.errorlist {
-    color: red;
-}
 #form button {
     width: 40%;
     float: left;
@@ -279,6 +273,15 @@ review_img {
 }
 .course_detail {
     font-size: 20px;
+}
+.error_field textarea{
+    background: #ffe8e8;
+}
+.errorlist {
+    color: red;
+}
+.required_field {
+    background: #F08080;
 }
 /* Footer styles */
 
