@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
+
+    <form id="form" method="get">
+        {{ form }}
+        <button type="submit">Получить</button>
+    </form>
+
     <div class="courses_container">
         {% now 'SHORT_DATETIME_FORMAT' %}
         {% for course in courses %}

@@ -43,3 +43,17 @@ class LessonForm(forms.ModelForm):
         if len(preview_data) > 200:
             raise ValidationError(
                 'Слишком длинное описание! Сократите до 200 символов')
+
+
+class OrderByAndSearchForm(forms.Form):
+
+    PRICE_CHOICES = (
+        ('title', 'По умолчанию'),
+        ('price', 'Самые дешевые курсы'),
+        ('-price', 'Самые дорогие курсы'),
+    )
+
+    search = forms.CharField(label='Поиск', label_suffix=':', required=False, widget=TextInput(
+        attrs={'placeholder': 'Введите запрос ...'}))
+    price_order = forms.ChoiceField(
+        label='', choices=PRICE_CHOICES, initial=PRICE_CHOICES[0])

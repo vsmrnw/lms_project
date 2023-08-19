@@ -5,17 +5,36 @@ from django.db.models import Q
 from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from .models import Course, Lesson, Tracking, Review
 from datetime import datetime
-from .forms import CourseForm, ReviewForm, LessonForm
+from .forms import CourseForm, ReviewForm, LessonForm, OrderByAndSearchForm
 from django.urls import reverse
 
 
-class MainView(ListView):
+class MainView(ListView, FormView):
     template_name = 'index.html'
     queryset = Course.objects.all()
     context_object_name = 'courses'
+
+    form_class = OrderByAndSearchForm
+
+    def get_queryset(self):
+        queryset = MainView.queryset
+        if {'search', 'price_order'} != self.request.GET.keys():
+            return queryset
+        else:
+            search_query = self.request.GET.get('search')
+            price_order_by = self.request.GET.get('price_order')
+            filter = Q(title__icontains=search_query) | Q(description__icontains=search_query)
+            queryset = queryset.filter(filter).order_by(price_order_by)
+        return queryset
+
+    def get_initial(self):
+        initial = super(MainView, self).get_initial()
+        initial['search'] = self.request.GET.get('search', '')
+        initial['price_order'] = self.request.GET.get('price_order', 'title')
+        return initial
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(MainView, self).get_context_data(**kwargs)
