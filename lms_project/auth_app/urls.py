@@ -5,8 +5,8 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('login/', user_login, name='user_login'),
-    path('register/', register, name='register'),
+    path('login/', UserLoginView.as_view(), name='user_login'),
+    path('register/', RegisterView.as_view(), name='register'),
     path('logout/', LogoutView.as_view(next_page='user_login'), name='logout'),
     # Обработчики для смены пароля
     path('password_change/', PasswordChangeView.as_view(), name='password_change'),

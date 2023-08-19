@@ -26,7 +26,8 @@ class MainView(ListView, FormView):
         else:
             search_query = self.request.GET.get('search')
             price_order_by = self.request.GET.get('price_order')
-            filter = Q(title__icontains=search_query) | Q(description__icontains=search_query)
+            filter = Q(title__icontains=search_query) | Q(
+                description__icontains=search_query)
             queryset = queryset.filter(filter).order_by(price_order_by)
         return queryset
 
