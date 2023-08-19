@@ -184,6 +184,9 @@ form input, form textarea {
 .error_field textarea {
     background: #ffe8e8;
 }
+.errorlist {
+    color: red;
+}
 #form button {
     width: 40%;
     float: left;
