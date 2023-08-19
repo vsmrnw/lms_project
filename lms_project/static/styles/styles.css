@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Sedgwick+Ave&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Inter:wght@200&family=Mouse+Memoirs&Display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Mouse+Memoirs&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
+
+/* Сброс стилей браузера по умолчанию */
 
 *, *:after, *:before {
     margin: 0;
@@ -14,23 +16,23 @@ html {
 }
 body {
     font-family: 'Inter', Arial, sans-serif;
+    height: 1600px;
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none ;
     outline: none;
-    color: #237fa7e3;
+    color: #237fa7e3 ;
     font-weight: bold;
     cursor: pointer;
 }
-a: hover {
+a:hover {
     transition: .55s ease-in-out;
 }
 img {
     max-width: 40%;
 }
-
-/*Стили для шапки сайта */
+/* Стили для шапки сайта */
 
 .header_container, .footer_container, main {
     display: flex;
@@ -41,12 +43,11 @@ img {
     height: 25%;
 }
 .logo_container {
-    display: bottom;
-    flex-direction: fow;
-    width: 20%;
+    display: flex;
+    flex-direction: row;
 }
 .logo {
-    display: bottom;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -54,13 +55,10 @@ img {
 .describer {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-left: 90px;
-    margin-top: -28%;
-    font-size: 20px;
+    justify-content: center;
 }
-.describer .title .footer-footer_container .title {
-    font-family: "Mochiy Pop P One", Helvetica, Arial ,sans-serif;
+.describer .title, .footer_container .title {
+    font-family: "Mochiy Pop P One", Helvetica, Arial, sans-serif;
     font-size: .8em;
     letter-spacing: .05em;
     opacity: 70%;
@@ -111,7 +109,7 @@ img {
 
 .submenu_profile {
     position: absolute;
-    width: 10%;
+    width: 14%;
     color: #fa9405;
     font-family: "Mochiy Pop P One", Helvetica, sans-serif;
     margin-top: 10px;
@@ -126,30 +124,37 @@ img {
     margin: 2% 3%;
     padding: 2%;
 }
+
+/* Main styles */
+
 main {
     justify-content: flex-start;
-    margin: 2% - 4% 0;
+    flex-direction: column;
+    margin: 3% 0 2% 0;
 }
+
 .main_container {
     display: flex;
-    width: 100%;
     justify-content: center;
-    padding: 50px;
+    width: 100% ;
 }
 .main_item {
     width: 30%;
     text-align: center;
 }
-form {
-    height: 105%;
-    padding: 4%;
+ul {
+   list-style-type: none;
+}
+#form {
+    height: 115%;
+    padding: 3%;
     border: 2px solid #fa9405;
     border-radius: 40px;
     text-align: left;
     font-size: .6em;
     z-index: 22;
 }
-form h3 {
+#form h3 {
     font-style: italic;
     text-align: center;
     font-size: 2em;
@@ -160,11 +165,7 @@ input, textarea {
     outline: none;
     margin-bottom: 2%;
 }
-form input, #form textarea {
-    outline: none;
-    margin-bottom: 2%;
-}
-form input, form textarea {
+#form input, #form textarea {
     width: 92%;
     padding: 10px 5px 10px 32px;
     font-size: large;
@@ -173,55 +174,109 @@ form input, form textarea {
     box-sizing: content-box;
     border-radius: 3px;
 }
+#form input[type="checkbox"] {
+    width: 3%;
+}
 
-#form input:active, #form input:focus,
+#form input:active,#form input:focus,
 #form textarea:active, #form textarea:focus
 {
     border: 1px solid #fa9405;
     background: rgba(238, 236, 240, 0.2);
     box-shadow: 0 1px 4px 0 #fa940559 inset;
 }
-#form button {
+.error_field textarea, .error_field {
+    background: #ffe8e8;
+}
+
+.errorlist {
+    color: red;
+}
+
+#form button, button {
     width: 40%;
-    float: left;
+    float: right;
     cursor: pointer;
     background: #fa9405;
     padding: 8px 5px;
-    margin-top 10px;
+    margin-top: 10px;
     color: #000;
     font-size: .9em;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-    border-radius: 30px;
-    border: 2px solid #000000;
+    border-radius: 3px;
     box-shadow: 0 1px 6px 4px #fa940559 inset;
     transition: all .2s ease-in-out;
 }
 
-form button:hover {
+#form button:hover {
     background: #fa9405bf;
-    margin-top: 10px;
 }
-.courses_container .reviews_container {
+#enroll_form button {
+    width: 15%;
+    float: left;
+    margin: 3% 3%;
+    border-radius: 10px;
+}
+.search_and_order_form {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    font-size: .8em;
+}
+.search_and_order_form button {
+    width: 100%;
+    padding: 3px;
+}
+.dropdown {
+    width: 200px;
+    margin: -5% 5%;
+}
+.dropdown-item {
+    font-size: .8em;
+    margin: 2% 0 2% 0;
+}
+
+.favourite_container {
+    float: right;
+    width: 30%;
+}
+#favourite_form button,
+.tracking_group_name #form,
+.tracking_group_name button
+{
+    outline: none;
+    background: white;
+    border: none;
+    box-shadow: none;
+}
+.tracking_group_name #form button {
+    width: fit-content
+}
+
+/* Course container */
+
+.courses_container, .reviews_container {
     display: grid;
-    width: 90%;
-    margin: 5% 8%;
+    width: 85%;
+    margin: 4% 10% ;
     justify-content: center;
     grid-template-columns: repeat(4, 25%);
     grid-gap: 30px;
-
 }
-.course_preview .review{
+.course_preview, .review {
     border: 1px solid rgba(0, 0, 0, 0.29);
     border-radius: 20px;
     font-size: .65em;
     line-height: 1.5em;
     width: 90%;
     padding: 3%;
+
 }
 .reviews_container {
     margin-top: 3%;
 }
-.review p:ntg-child(2) {
+.review p:nth-child(2) {
     font-weight: bold;
 }
 .review p:nth-child(3) {
@@ -229,10 +284,11 @@ form button:hover {
     font-size: .8em;
     padding: 3% 1%;
 }
-review_img {
+.review img {
     border-radius: 50%;
     width: 19%;
 }
+
 .course_preview:nth-child(2) {
     margin: 0% 2.5%;
     padding-left: 0;
@@ -242,6 +298,7 @@ review_img {
     flex-direction: column;
     width: 100%;
 }
+
 .course_preview p {
     padding: 0 3%;
     margin-bottom: 1%;
@@ -258,59 +315,52 @@ review_img {
     -webkit-box-shadow: 0 0 40px 2px #fa94056e;
     -moz-box-shadow: 0 0 40px 2px #fa94056e;
 }
-.title {
-    font-size: 30px;
-}
-.role {
-    font-size: 20px;
-}
 .price {
     color: #0ba5189c;
     font-weight: bold
 }
-.course_title {
-    font-size: 30px;
+
+/* Tracking styles */
+.tracking-container {
+    display: flex;
+    flex-direction: column;
+    margin: 3% 7% 2% 1%;
 }
-.course_detail {
-    font-size: 20px;
+.tracking_group {
+    border: 1px solid grey;
+    border-radius: 35px;
+    margin: 2% 0;
+    padding: 3% 10%;
+    width: 150%;
 }
-.error_field textarea{
-    background: #ffe8e8;
+.tracking_group_name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    margin: 2% 0;
 }
-.errorlist {
-    color: red;
+.tracking_lessons {
+    font-size: .8em;
 }
-.required_field {
-    background: #F08080;
-}
+
 /* Footer styles */
 
 footer {
-    padding-bottom: 5px;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     background: #e0e6ed;
 }
 .footer_container {
-    position: bottom;
-    width: 80%;
-    margin-left: 2%;
+    width: 65%;
+    margin-left: 6%;
     font-size: .5em;
 }
 .footer_container .title {
     font-size: 1.1em;
 }
-.footer_container .privacy {
-    font-size: 1.1em;
-    white-space: nowrap;
-    margin-left: 15px;
-}
-.footer_container .tern {
-    font-size: 1.1em;
-    white-space: nowrap;
-}
 .copyright-mark img {
-    width: 6.5%;
-    margin-top: 15px;
+    width: 7%;
 }
