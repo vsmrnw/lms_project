@@ -59,6 +59,17 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+# Session settings
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 1209600
+SESSION_SAVE_EVERY_REQUEST = False
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = None
+
+# Custom settings for remember user after logged
+REMEMBER_KEY = 'is_remember'
+REMEMBER_AGE = 60 * 60 * 24 * 365
 
 ROOT_URLCONF = 'lms_project.urls'
 
