@@ -16,7 +16,8 @@ class UserLoginView(LoginView):
     def form_valid(self, form):
         is_remember = self.request.POST.get('is_remember')
         if is_remember == 'on':
-            self.request.session[settings.REMEMBER] = datetime.now().isoformat()
+            self.request.session[settings.REMEMBER] = datetime.now(
+            ).isoformat()
             self.request.session.set_expire(settings.REMEMBER_AGE)
         elif is_remember == 'off':
             self.request.session.set_expire(0)

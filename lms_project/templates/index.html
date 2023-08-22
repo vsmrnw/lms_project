@@ -12,6 +12,22 @@
         {% for course in courses %}
           <div class="course_preview">
             <p><a class="course_title" href="{% url 'detail' course.pk %}">{{ course.title|title }}</a></p>
+
+              {% if not course.pk in request.session.favourites or not request.session.favourites %}
+                  <div class="favourite_container">
+                      <form id="favourite_form" method="post" action="{% url 'add_booking' course.pk %}" title="Принять участие">
+                          {% csrf_token %}
+                          <button type="submit" class="fa fa-plus" style="color: #fa9405"></button>
+                      </form>
+                  </div>
+              {% else %}
+                  <div class="favourite_container">
+                      <form id="favourite_form" method="post" action="{% url 'remove_booking' course.pk %}" title="Принять участие">
+                          {% csrf_token %}
+                          <button type="submit" class="fa fa-check" style="color: green"></button>
+                      </form>
+                  </div>
+              {% endif %}
               <p>{{ course.start_date|date:"j E" }}</p>
             <div class="course_detail">
                 <p>{{ course.start_date }}</p>

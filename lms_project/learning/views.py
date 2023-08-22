@@ -73,6 +73,7 @@ class CourseDetailView(ListView):
         views[course_id] = count + 1
         request.session['views'] = views
         return super(CourseDetailView, self).get(request, *args, **kwargs)
+
     def get_queryset(self):
         return Lesson.objects.select_related('course').filter(course=self.kwargs.get('course_id'))
 
@@ -163,3 +164,29 @@ def review(request, course_id):
     else:
         form = ReviewForm()
         return render(request, 'review.html', {'form': form})
+
+
+def add_booking(request, course_id):
+    if request.method == 'POST':
+        favourites = request.session.get('favourites', list())
+        favourites.append(course_id)
+        request.session['favourites'] = favourites
+        request.session.modified = True
+
+    return redirect(reverse('index'))
+
+
+def remove_booking(request, course_id):
+    if request.method == 'POST':
+        request.session.get('favourites').remove(course_id)
+        request.session.modified = True
+
+    return redirect(reverse('index'))
+
+
+class FavouriteView(MainView):
+
+    def get_queryset(self):
+        queryset = super(FavouriteView, self).get_queryset()
+        ids = self.request.session.get('favourites', list())
+        return queryset.filter(id__in=ids)
