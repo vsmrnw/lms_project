@@ -1,15 +1,15 @@
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import NON_FIELD_ERRORS
-from django.db.models import Q
 from django.db import transaction
-from django.http import HttpResponse
+from django.db.models import Q
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
+from django.urls import reverse
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
+from .forms import CourseForm, ReviewForm, LessonForm, OrderByAndSearchForm, SettingForm
 from .models import Course, Lesson, Tracking, Review
 from datetime import datetime
-from .forms import CourseForm, ReviewForm, LessonForm, OrderByAndSearchForm
-from django.urls import reverse
 
 
 class MainView(ListView, FormView):
@@ -41,6 +41,9 @@ class MainView(ListView, FormView):
         context = super(MainView, self).get_context_data(**kwargs)
         context['current_year'] = datetime.now().year
         return context
+
+    def get_paginate_by(self, queryset):
+        return self.request.COOKIES.get('paginate_by', 5)
 
 
 class CourseCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -146,6 +149,30 @@ def enroll(request, course_id):
         return HttpResponse(f'Вы записаны на данный курс')
 
 
+class FavouriteView(MainView):
+
+    def get_queryset(self):
+        queryset = super(FavouriteView, self).get_queryset()
+        ids = self.request.session.get('favourites', list())
+        return queryset.filter(id__in=ids)
+
+
+class SettingFormView(FormView):
+    form_class = SettingForm
+    template_name = 'settings.html'
+
+    def post(self, request, *args, **kwargs):
+        paginate_by = request.POST.get('paginate_by')
+        response = HttpResponseRedirect(reverse('index'), 'Настройки успешно сохранены!')
+        response.set_cookie('paginate_by', value=paginate_by,
+                            secure=False, httponly=False, samesite='Lax', expires=60*60*24*365)
+        return response
+
+    def get_initial(self):
+        initial = super(SettingFormView, self).get_initial()
+        initial['paginate_by'] = self.request.COOKIES.get('paginate_by', 5)
+        return initial
+
 @transaction.non_atomic_requests
 @login_required
 @permission_required('learning.add_review', raise_exception=True)
@@ -182,11 +209,3 @@ def remove_booking(request, course_id):
         request.session.modified = True
 
     return redirect(reverse('index'))
-
-
-class FavouriteView(MainView):
-
-    def get_queryset(self):
-        queryset = super(FavouriteView, self).get_queryset()
-        ids = self.request.session.get('favourites', list())
-        return queryset.filter(id__in=ids)

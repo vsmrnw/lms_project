@@ -15,4 +15,5 @@ urlpatterns = [
     path('remove_booking/<int:course_id>/',
          remove_booking, name='remove_booking'),
     path('favourites/', FavouriteView.as_view(), name='favourites'),
+    path('settings/', SettingFormView.as_view(), name='settings'),
 ]

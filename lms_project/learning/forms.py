@@ -51,3 +51,8 @@ class OrderByAndSearchForm(forms.Form):
         attrs={'placeholder': 'Введите запрос ...'}))
     price_order = forms.ChoiceField(
         label='', choices=PRICE_CHOICES, initial=PRICE_CHOICES[0])
+
+
+class SettingForm(forms.Form):
+    paginate_by = forms.IntegerField(
+        label='Количество записей на одной странице', min_value=2, max_value=20, initial=5)
