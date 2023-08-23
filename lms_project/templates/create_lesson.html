@@ -7,9 +7,6 @@
             <h3>{% block form_name %}Создание урока {% endblock %}</h3>
                 {% csrf_token %}
                 {{ form.as_p }}
-                <p class="{% if form.field_name.errors %}{{ form.field_name.error_css_class }}{% endif %}">
-                    {{ field.label_tag }} {{ field }} {{  field.help_text }}</p>
-                {% endfor %}
 
                 <p><button type="submit">Добавить урок</button></p>
             </form>
