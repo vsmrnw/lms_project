@@ -37,6 +37,7 @@ class LessonForm(forms.ModelForm):
         if len(preview_data) > 200:
             raise ValidationError(
                 'Слишком длинное описание! Сократите до 200 символов')
+        return preview_data
 
 
 class OrderByAndSearchForm(forms.Form):

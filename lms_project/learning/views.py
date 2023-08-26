@@ -1,14 +1,19 @@
 from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin)
 from django.core.exceptions import NON_FIELD_ERRORS
+from django.db.models.signals import pre_save
 from django.db import transaction
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, FormView
-from .forms import CourseForm, ReviewForm, LessonForm, OrderByAndSearchForm, SettingForm
+from django.views.generic import (ListView, CreateView, UpdateView, DeleteView,
+                                  FormView)
+from .forms import (CourseForm, ReviewForm, LessonForm, OrderByAndSearchForm,
+                    SettingForm)
 from .models import Course, Lesson, Tracking, Review
+from .signals import set_views
 from datetime import datetime
 
 
@@ -46,7 +51,8 @@ class MainView(ListView, FormView):
         return self.request.COOKIES.get('paginate_by', 5)
 
 
-class CourseCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class CourseCreateView(LoginRequiredMixin, PermissionRequiredMixin,
+                       CreateView):
     template_name = 'create.html'
     model = Course
     form_class = CourseForm
@@ -70,15 +76,15 @@ class CourseDetailView(ListView):
     pk_url_kwarg = 'course_id'
 
     def get(self, request, *args, **kwargs):
-        views = request.session.setdefault('views', {})
-        course_id = str(kwargs[CourseDetailView.pk_url_kwarg])
-        count = views.get(course_id, 0)
-        views[course_id] = count + 1
-        request.session['views'] = views
+        set_views.send(sender=self.__class__, session=request.session,
+                       pk_url_kwarg=CourseDetailView.pk_url_kwarg,
+                       id=kwargs[CourseDetailView.pk_url_kwarg])
+
         return super(CourseDetailView, self).get(request, *args, **kwargs)
 
     def get_queryset(self):
-        return Lesson.objects.select_related('course').filter(course=self.kwargs.get('course_id'))
+        return Lesson.objects.select_related('course').filter(
+            course=self.kwargs.get('course_id'))
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
@@ -87,7 +93,8 @@ class CourseDetailView(ListView):
         return context
 
 
-class CourseUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+class CourseUpdateView(LoginRequiredMixin, PermissionRequiredMixin,
+                       UpdateView):
     model = Course
     form_class = CourseForm
     template_name = 'create.html'
@@ -102,7 +109,8 @@ class CourseUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
         return reverse('detail', kwargs={'course_id': self.object.id})
 
 
-class CourseDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+class CourseDeleteView(LoginRequiredMixin, PermissionRequiredMixin,
+                       DeleteView):
     model = Course
     template_name = 'delete.html'
     pk_url_kwarg = 'course_id'
@@ -116,16 +124,26 @@ class CourseDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
         return reverse('index')
 
 
-class LessonCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+class LessonCreateView(LoginRequiredMixin, PermissionRequiredMixin,
+                       CreateView):
     model = Lesson
     form_class = LessonForm
     template_name = 'create_lesson.html'
     pk_url_kwarg = 'course_id'
 
-    permission_required = ('learning.add_lesson', )
+    permission_required = ('learning.add_lesson',)
+
+    def form_valid(self, form):
+        error = pre_save.send(sender=LessonCreateView.model, instance=form.save(commit=False))
+        if error[0][1]:
+            form.errors[NON_FIELD_ERRORS] = [error[0][1]]
+            return super(LessonCreateView, self).form_invalid(form)
+        else:
+            return super(LessonCreateView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('detail', kwargs={'course_id': self.kwargs.get('course_id')})
+        return reverse('detail', kwargs={'course_id':
+                                             self.kwargs.get('course_id')})
 
     def get_form(self, form_class=None):
         form = super(LessonCreateView, self).get_form()
@@ -163,15 +181,18 @@ class SettingFormView(FormView):
 
     def post(self, request, *args, **kwargs):
         paginate_by = request.POST.get('paginate_by')
-        response = HttpResponseRedirect(reverse('index'), 'Настройки успешно сохранены!')
+        response = HttpResponseRedirect(reverse('index'),
+                                        'Настройки успешно сохранены!')
         response.set_cookie('paginate_by', value=paginate_by,
-                            secure=False, httponly=False, samesite='Lax', expires=60*60*24*365)
+                            secure=False, httponly=False, samesite='Lax',
+                            expires=60 * 60 * 24 * 365)
         return response
 
     def get_initial(self):
         initial = super(SettingFormView, self).get_initial()
         initial['paginate_by'] = self.request.COOKIES.get('paginate_by', 5)
         return initial
+
 
 @transaction.non_atomic_requests
 @login_required
@@ -181,7 +202,8 @@ def review(request, course_id):
         form = ReviewForm(request.POST)
         if form.errors:
             errors = form.errors[NON_FIELD_ERRORS]
-            return render(request, 'review.html', {'form': form, 'errors': errors})
+            return render(request, 'review.html',
+                          {'form': form, 'errors': errors})
         if form.is_valid():
             data = form.cleaned_data
             Review.objects.create(content=data['content'],

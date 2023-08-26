@@ -5,6 +5,7 @@ from .functions import get_timestamp_path_user
 
 # Create your models here.
 class User(AbstractUser):
+    username = None
     email = models.EmailField(unique=True, verbose_name='Email')
     birthday = models.DateField(
         verbose_name='Дата рождения', blank=False, null=True)
