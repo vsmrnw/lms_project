@@ -13,7 +13,7 @@ from django.views.generic import (ListView, CreateView, UpdateView, DeleteView,
 from .forms import (CourseForm, ReviewForm, LessonForm, OrderByAndSearchForm,
                     SettingForm)
 from .models import Course, Lesson, Tracking, Review
-from .signals import set_views
+from .signals import set_views, course_enroll
 from datetime import datetime
 
 
@@ -164,6 +164,10 @@ def enroll(request, course_id):
         records = [Tracking(lesson=lesson, user=request.user,
                             passed=False) for lesson in lessons]
         Tracking.objects.bulk_create(records)
+
+        course_enroll.send(sender=Tracking, request=request,
+                           course_id=course_id)
+
         return HttpResponse(f'Вы записаны на данный курс')
 
 
