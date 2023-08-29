@@ -1,10 +1,10 @@
 from django.conf import settings
-from django.core.mail import send_mail, EmailMultiAlternatives
-from django.db.models.signals import pre_save
-from django.dispatch import Signal
+from django.core.mail import send_mail, EmailMultiAlternatives, get_connection, EmailMessage
+from django.db.models.signals import pre_save, post_save
+from django.dispatch import Signal, receiver
 from django.template.loader import render_to_string
-
 from .models import Course, Lesson
+from django.contrib.auth import get_user_model
 
 set_views = Signal()
 course_enroll = Signal()
@@ -35,7 +35,7 @@ def incr_views(sender, **kwargs):
 
 
 def send_enroll_email(**kwargs):
-    template_name = 'email/enroll_email.html'
+    template_name = 'email/course_info_email.html'
     course = Course.objects.get(id=kwargs['course_id'])
     context = {
         'course': course,
@@ -61,6 +61,37 @@ def send_user_certificate(**kwargs):
                                    to=[kwargs['sender'].email])
     email.attach_alternative(render_to_string(template_name, context), mimetype='text/html')
     email.attach_file(path=settings.MEDIA_ROOT / 'certificates/certificate.png', mimetype='image/png')
+
+
+@receiver(post_save, sender=Lesson)
+def send_info_email(sender, instance, **kwargs):
+    if kwargs['created']:
+        actual_count = sender.objects.filter(course=instance.course).count()
+        set_count = Course.objects.filter(id=instance.course.id) \
+            .values('count_lessons')[0]['count_lessons']
+
+        if actual_count == set_count:
+            template_name = 'email/course_info_email.html'
+            course = Course.objects.get(id=instance.course.id)
+            context = {
+                'course': course,
+                'message': f'На нашей платформе появился новый курс {course.title}.'
+                           f'\nПодробную информацию Вы можете получить по ссылке ниже'
+            }
+            user = get_user_model()
+            recipients = user.objects.exclude(is_staff=True).values_list('email', flat=True)
+
+            connection = get_connection(fail_silently=True)
+
+            emails = [
+                EmailMessage(subject='Пришло время обучится новым навыкам | Платформа Edushka',
+                             body=render_to_string(template_name, context),
+                             to=[email], connection=connection)
+                for email in recipients
+            ]
+
+            connection.send_messages(emails)
+            connection.close()
 
 
 pre_save.connect(check_quantity, sender=Lesson)
