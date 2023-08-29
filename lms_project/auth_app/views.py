@@ -5,6 +5,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.views.generic import CreateView
 from .forms import LoginForm, RegisterForm
+from .signals import account_access
 
 
 class UserLoginView(LoginView):
@@ -20,6 +21,9 @@ class UserLoginView(LoginView):
             self.request.session.set_expire(settings.REMEMBER_AGE)
         elif is_remember == 'off':
             self.request.session.set_expire(0)
+
+        account_access.send(sender=self.__class__, request=self.request)
+
         return super(UserLoginView, self).form_valid(form)
 
 
