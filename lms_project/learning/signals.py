@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.db.models.signals import pre_save
 from django.dispatch import Signal
 from django.template.loader import render_to_string
@@ -8,6 +8,7 @@ from .models import Course, Lesson
 
 set_views = Signal()
 course_enroll = Signal()
+get_certificate = Signal()
 
 
 def check_quantity(sender, instance, **kwargs):
@@ -50,6 +51,19 @@ def send_enroll_email(**kwargs):
               fail_silently=False)
 
 
+def send_user_certificate(**kwargs):
+    template_name = 'email/certificate_email.html'
+    context = {
+        'message': 'Поздравляем вы успешно завершили курс.'
+                   '\nВо вложении прилагаем сертификат о прохождении'
+    }
+    email = EmailMultiAlternatives(subject='Сертификат о прохождении курса | Платформа Edushka',
+                                   to=[kwargs['sender'].email])
+    email.attach_alternative(render_to_string(template_name, context), mimetype='text/html')
+    email.attach_file(path=settings.MEDIA_ROOT / 'certificates/certificate.png', mimetype='image/png')
+
+
 pre_save.connect(check_quantity, sender=Lesson)
 set_views.connect(incr_views)
 course_enroll.connect(send_enroll_email)
+get_certificate.connect(send_user_certificate)

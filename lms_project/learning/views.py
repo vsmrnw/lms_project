@@ -13,7 +13,7 @@ from django.views.generic import (ListView, CreateView, UpdateView, DeleteView,
 from .forms import (CourseForm, ReviewForm, LessonForm, OrderByAndSearchForm,
                     SettingForm)
 from .models import Course, Lesson, Tracking, Review
-from .signals import set_views, course_enroll
+from .signals import set_views, course_enroll, get_certificate
 from datetime import datetime
 
 
@@ -235,3 +235,9 @@ def remove_booking(request, course_id):
         request.session.modified = True
 
     return redirect(reverse('index'))
+
+
+@login_required
+def get_certificate_view(request):
+    get_certificate.send(sender=request.user)
+    return HttpResponse('Сертификат отправлен на вашу почту')
