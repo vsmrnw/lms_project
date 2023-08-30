@@ -13,9 +13,9 @@
         <p>{{ message }}</p><br>
             <div class="course_container">
                 <div class="course_preview" style="transform: none; box-shadow: none; border: none">
-                    <p><a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ course.get_absolute_url }}">{{ course_var.title }}</a></p>
+                    <p><a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ course.get_absolute_url }}">{{ course.title }}</a></p>
 
-                    {% with authors=course_var.authors.all %}
+                    {% with authors=course.authors.all %}
                         {% if authors|length == 1 %}
                         <p>Автор: {{ authors.0.last_name }} {{ authors.0.first_name  }}</p>
                         {% else %}
@@ -28,10 +28,10 @@
                         {% endif %}
                     {% endwith %}
 
-                    <p>Продолжительность: {{ course_var.duration }} месяцев/-a</p>
-                    <p>Количество уроков: {{ course_var.count_lesson }}</p>
-                    <p>{{ course_var.description }}</p>
-                    <p><span class="price">{{ course_var.price }}</span></p>
+                    <p>Продолжительность: {{ course.duration }} месяцев/-a</p>
+                    <p>Количество уроков: {{ course.count_lesson }}</p>
+                    <p>{{ course.description }}</p>
+                    <p><span class="price">{{ course.price }}</span></p>
                 </div>
         {% endblock %}
     </main>

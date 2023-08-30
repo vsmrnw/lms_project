@@ -1,5 +1,6 @@
 from django.conf import settings
-from django.core.mail import send_mail, EmailMultiAlternatives, get_connection, EmailMessage
+from django.core.mail import (send_mail, EmailMultiAlternatives, get_connection,
+                              EmailMessage)
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import Signal, receiver
 from django.template.loader import render_to_string
@@ -83,15 +84,17 @@ def send_info_email(sender, instance, **kwargs):
                            f'ссылке ниже'
             }
             user = get_user_model()
-            recipients = user.objects.exclude(is_staff=True).values_list('email', flat=True)
+            recipients = (user.objects.exclude(is_staff=True)
+                          .values_list('email', flat=True))
 
             connection = get_connection(fail_silently=True)
+            connection.open()
 
             emails = [
                 EmailMessage(subject='Пришло время обучится новым навыкам | '
                                      'Платформа Edushka',
                              body=render_to_string(template_name, context),
-                             to=[email], connection=connection)
+                             to=[email])
                 for email in recipients
             ]
 

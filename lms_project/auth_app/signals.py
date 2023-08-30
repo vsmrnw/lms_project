@@ -14,12 +14,13 @@ def send_login_user_email(**kwargs):
     request = kwargs['request']
     context = {
         'request': request,
-        'message': f'В ваш аккаунт {request.POST["username"]} был выполнен вход {timezone.now().isoformat()}'
-                   f'\n Если вы не совершали вход, то рекомендуется немедленно '
+        'message': f'В ваш аккаунт {request.POST["username"]} '
+                   f'был выполнен вход {timezone.now().isoformat()}'
+                   f'\n Если вы не совершали вход, то рекомендуется немедленно'
     }
     email = EmailMessage(subject='Вход в аккаунт | Платформа  Edushka',
                          body=render_to_string(template_name, context),
-                         to=[request.POST['username']])
+                         to=[request.POST['email']])
     email.content_subtype = 'html'
     email.send(fail_silently=True)
 
