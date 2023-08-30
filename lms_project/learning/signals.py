@@ -57,10 +57,13 @@ def send_user_certificate(**kwargs):
         'message': 'Поздравляем вы успешно завершили курс.'
                    '\nВо вложении прилагаем сертификат о прохождении'
     }
-    email = EmailMultiAlternatives(subject='Сертификат о прохождении курса | Платформа Edushka',
+    email = EmailMultiAlternatives(subject='Сертификат о прохождении курса | '
+                                           'Платформа Edushka',
                                    to=[kwargs['sender'].email])
-    email.attach_alternative(render_to_string(template_name, context), mimetype='text/html')
-    email.attach_file(path=settings.MEDIA_ROOT / 'certificates/certificate.png', mimetype='image/png')
+    email.attach_alternative(render_to_string(template_name, context),
+                             mimetype='text/html')
+    email.attach_file(path=settings.MEDIA_ROOT / 'certificates/certificate.png',
+                      mimetype='image/png')
 
 
 @receiver(post_save, sender=Lesson)
@@ -76,7 +79,8 @@ def send_info_email(sender, instance, **kwargs):
             context = {
                 'course': course,
                 'message': f'На нашей платформе появился новый курс {course.title}.'
-                           f'\nПодробную информацию Вы можете получить по ссылке ниже'
+                           f'\nПодробную информацию Вы можете получить по '
+                           f'ссылке ниже'
             }
             user = get_user_model()
             recipients = user.objects.exclude(is_staff=True).values_list('email', flat=True)
@@ -84,7 +88,8 @@ def send_info_email(sender, instance, **kwargs):
             connection = get_connection(fail_silently=True)
 
             emails = [
-                EmailMessage(subject='Пришло время обучится новым навыкам | Платформа Edushka',
+                EmailMessage(subject='Пришло время обучится новым навыкам | '
+                                     'Платформа Edushka',
                              body=render_to_string(template_name, context),
                              to=[email], connection=connection)
                 for email in recipients
