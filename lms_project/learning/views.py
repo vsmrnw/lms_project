@@ -2,6 +2,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin)
 from django.core.exceptions import NON_FIELD_ERRORS
+from django.core.cache import cache, caches
+from django.core.cache.backends.redis import RedisCache
 from django.db.models.signals import pre_save
 from django.db import transaction
 from django.db.models import Q
@@ -25,14 +27,20 @@ class MainView(ListView, FormView):
     form_class = OrderByAndSearchForm
 
     def get_queryset(self):
+        if 'courses' in cache:
+            queryset = cache.get('courses')
+        else:
+            queryset = MainView.queryset
+            cache.set('courses', queryset, timeout=30)
+
         queryset = MainView.queryset
         if {'search', 'price_order'} != self.request.GET.keys():
             return queryset
         else:
             search_query = self.request.GET.get('search')
             price_order_by = self.request.GET.get('price_order')
-            filter = Q(title__icontains=search_query) | Q(
-                description__icontains=search_query)
+            filter = (Q(title__icontains=search_query) |
+                      Q(description__icontains=search_query))
             queryset = queryset.filter(filter).order_by(price_order_by)
         return queryset
 
@@ -59,15 +67,16 @@ class CourseCreateView(LoginRequiredMixin, PermissionRequiredMixin,
 
     permission_required = ('learning.add_course',)
 
-    def get_success_url(self):
-        return reverse('detail', kwargs={'course_id': self.object.id})
-
     def form_valid(self, form):
         with transaction.atomic():
             course = form.save(commit=False)
             course.author = self.request.user
             course.save()
-            return super(CourseCreateView, self).form_valid(form)
+
+            cache.delete('courses')
+
+            return redirect(reverse('detail',
+                                    kwargs={'course_id': course.id}))
 
 
 class CourseDetailView(ListView):
@@ -83,8 +92,12 @@ class CourseDetailView(ListView):
         return super(CourseDetailView, self).get(request, *args, **kwargs)
 
     def get_queryset(self):
-        return Lesson.objects.select_related('course').filter(
-            course=self.kwargs.get('course_id'))
+        course_id = self.kwargs.get('course_id')
+        queryset = cache.get_or_set(f'course_{course_id}_lessons',
+                                    Lesson.objects.select_related('course')
+                                    .filter(course=course_id),
+                                    timeout=30)
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
@@ -117,6 +130,11 @@ class CourseDeleteView(LoginRequiredMixin, PermissionRequiredMixin,
 
     permission_required = ('learning.delete_course',)
 
+    def form_valid(self, form):
+        course_id = self.kwargs.get('course_id')
+        cache.delete_many(['courses', f"course_{course_id}_lessons"])
+        return super(CourseDeleteView, self).form_valid(form)
+
     def get_queryset(self):
         return Course.objects.filter(id=self.kwargs.get('course_id'))
 
@@ -134,7 +152,8 @@ class LessonCreateView(LoginRequiredMixin, PermissionRequiredMixin,
     permission_required = ('learning.add_lesson',)
 
     def form_valid(self, form):
-        error = pre_save.send(sender=LessonCreateView.model, instance=form.save(commit=False))
+        error = pre_save.send(sender=LessonCreateView.model,
+                              instance=form.save(commit=False))
         if error[0][1]:
             form.errors[NON_FIELD_ERRORS] = [error[0][1]]
             return super(LessonCreateView, self).form_invalid(form)
