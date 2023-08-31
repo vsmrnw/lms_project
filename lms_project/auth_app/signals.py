@@ -20,7 +20,7 @@ def send_login_user_email(**kwargs):
     }
     email = EmailMessage(subject='Вход в аккаунт | Платформа  Edushka',
                          body=render_to_string(template_name, context),
-                         to=[request.POST['email']])
+                         to=[request.POST['username']])
     email.content_subtype = 'html'
     email.send(fail_silently=True)
 
