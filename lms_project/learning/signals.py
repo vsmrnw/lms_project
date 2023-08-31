@@ -79,7 +79,8 @@ def send_info_email(sender, instance, **kwargs):
             course = Course.objects.get(id=instance.course.id)
             context = {
                 'course': course,
-                'message': f'На нашей платформе появился новый курс {course.title}.'
+                'message': f'На нашей платформе появился новый курс '
+                           f'{course.title}.'
                            f'\nПодробную информацию Вы можете получить по '
                            f'ссылке ниже'
             }
