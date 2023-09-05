@@ -19,6 +19,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+handler500 = 'lms_project.views.server_error'
+handler404 = 'lms_project.views.page_not_found'
+handler403 = 'lms_project.views.forbidden'
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('auth_app.urls')),
