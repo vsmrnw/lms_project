@@ -30,21 +30,21 @@
         <div class="preview" style="margin-top: 1%; transform: none; box-shadow: none; border: none">
             <div style="font-weight: bold">Список уроков</div>
             {% for lesson in lessons %}
-                <p style="font-weight:bold">{{forloop.counter}}. {{ lesson.name }}</p>
+                <p style="font-weight: bold">{{forloop.counter}}. {{ lesson.name }}</p>
                 <p>{{ lesson.preview }}</p>
             {% empty %}
                 <p>Уроки пока не добавлены.</p>
             {% endfor %}
-            <form method="post" action="{% url 'enroll' course_var.pk %}">
+            <form id="enroll_form" method="post" action="{% url 'enroll' course_var.pk %}">
                 {% csrf_token %}
-                <input type="submit" value="Записаться">
+                <button type="submit">Записаться</button>
             </form>
         </div>
 
         <p style="font-weight: bold; margin-left: 5.5%">
             Отзывы
             <span style="font-weight: initial; font-size: .85em">{{reviews.count}}</span>
-            <a href="{% url 'review' course_var.pk %}">Оставить отзыв</a>
+            <a style="font-size: .6em; margin-left:2%" href="{% url 'review' course_var.pk %}">Оставить отзыв</a>
         </p>
         <div class="reviews_container">
             {% for review in reviews %}

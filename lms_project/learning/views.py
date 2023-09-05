@@ -6,7 +6,7 @@ from django.core.cache import cache, caches
 from django.core.cache.backends.redis import RedisCache
 from django.db.models.signals import pre_save
 from django.db import transaction
-from django.db.models import Q
+from django.db.models import Q, F, Sum, Count
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -171,6 +171,19 @@ class LessonCreateView(LoginRequiredMixin, PermissionRequiredMixin,
         return form
 
 
+class TrackingView(ListView, LoginRequiredMixin):
+    model = Tracking
+    template_name = 'tracking.html'
+    context_object_name = 'tracks'
+
+    def get_queryset(self):
+        queryset = Tracking.objects \
+            .select_related('lesson') \
+            .filter(user=self.request.user) \
+            .annotate(header=F('lesson__course__title'))
+        return queryset
+
+
 @transaction.atomic
 @login_required
 @permission_required('learning.add_tracking', raise_exception=True)
@@ -187,7 +200,7 @@ def enroll(request, course_id):
         course_enroll.send(sender=Tracking, request=request,
                            course_id=course_id)
 
-        return HttpResponse(f'Вы записаны на данный курс')
+        return redirect('tracking')
 
 
 class FavouriteView(MainView):
@@ -257,6 +270,14 @@ def remove_booking(request, course_id):
 
 
 @login_required
-def get_certificate_view(request):
-    get_certificate.send(sender=request.user)
-    return HttpResponse('Сертификат отправлен на вашу почту')
+def get_certificate_view(request, course_id):
+    count_passed = Tracking.objects.filter(lesson__course=course_id,
+                                           user=request.user)\
+        .aggregate(total_passed=Count('lesson__course'),
+                   fact_passed=Sum('passed'))
+
+    if count_passed['total_passed'] == count_passed['fact_passed']:
+        get_certificate.send(sender=request.user)
+        return HttpResponse('Сертификат отправлен на вашу почту')
+    else:
+        return HttpResponse('Вы еще не завершили курс полностью')
