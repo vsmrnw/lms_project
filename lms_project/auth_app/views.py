@@ -18,9 +18,9 @@ class UserLoginView(LoginView):
         if is_remember == 'on':
             self.request.session[settings.REMEMBER_KEY] = \
                 datetime.now().isoformat()
-            self.request.session.set_expire(settings.REMEMBER_AGE)
+            self.request.session.set_expiry(settings.REMEMBER_AGE)
         elif is_remember == 'off':
-            self.request.session.set_expire(0)
+            self.request.session.set_expiry(0)
 
         account_access.send(sender=self.__class__, request=self.request)
 
