@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['']
 
@@ -61,7 +61,7 @@ SESSION_CACHE_ALIAS = 'session_store'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 1209600
 SESSION_SAVE_EVERY_REQUEST = False
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_SAMESITE = None
 
 # Custom settings for remember user after logged
@@ -100,6 +100,9 @@ DATABASES = {
         'PASSWORD': os.environ.get('PASSWORD_DB'),
         'NAME': 'lms_project',
         'ATOMIC_REQUEST': True,
+        'TEST': {
+            'NAME': 'lms_project_test'
+        }
     }
 }
 
@@ -182,6 +185,6 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Production settings
-SECURE_SSL_REDIRECT = True
-CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = False
+CSRF_COOKIE_SECURE = False
 

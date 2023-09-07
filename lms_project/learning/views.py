@@ -1,22 +1,23 @@
+from datetime import datetime
+
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin)
+from django.core.cache import cache
 from django.core.exceptions import NON_FIELD_ERRORS
-from django.core.cache import cache, caches
-from django.core.cache.backends.redis import RedisCache
-from django.db.models.signals import pre_save
 from django.db import transaction
 from django.db.models import Q, F, Sum, Count
+from django.db.models.signals import pre_save
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import (ListView, CreateView, UpdateView, DeleteView,
                                   FormView)
+
 from .forms import (CourseForm, ReviewForm, LessonForm, OrderByAndSearchForm,
                     SettingForm)
 from .models import Course, Lesson, Tracking, Review
 from .signals import set_views, course_enroll, get_certificate
-from datetime import datetime
 
 
 class MainView(ListView, FormView):

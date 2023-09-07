@@ -9,7 +9,8 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('login/', cache_control(private=True)(UserLoginView.as_view()), name='user_login'),
+    path('login/', cache_control(private=True)(UserLoginView.as_view()),
+         name='user_login'),
     path('register/', cache_control(private=True)(RegisterView.as_view()), name='register'),
     path('logout/', LogoutView.as_view(next_page='user_login'), name='logout'),
     # Обработчики для смены пароля
