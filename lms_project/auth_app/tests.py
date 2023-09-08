@@ -22,7 +22,8 @@ class AuthAppTestCase(TestCase):
             'username': 'student',
             'email': 'student@example.com',
             'birthday': timezone.now().date(),
-
+            'password1': 'student1234',
+            'password2': 'student4321',
         }
         self.user_invalid_register_data = {
             'username': 'student@example.com',
