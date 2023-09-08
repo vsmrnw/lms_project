@@ -1,0 +1,1234 @@
+[
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Администратор",
+        "permissions": [
+            [
+                "add_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "change_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "delete_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "view_logentry",
+                "admin",
+                "logentry"
+            ],
+            [
+                "add_group",
+                "auth",
+                "group"
+            ],
+            [
+                "change_group",
+                "auth",
+                "group"
+            ],
+            [
+                "delete_group",
+                "auth",
+                "group"
+            ],
+            [
+                "view_group",
+                "auth",
+                "group"
+            ],
+            [
+                "add_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "change_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "delete_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "view_permission",
+                "auth",
+                "permission"
+            ],
+            [
+                "add_user",
+                "auth_app",
+                "user"
+            ],
+            [
+                "change_user",
+                "auth_app",
+                "user"
+            ],
+            [
+                "delete_user",
+                "auth_app",
+                "user"
+            ],
+            [
+                "view_user",
+                "auth_app",
+                "user"
+            ],
+            [
+                "add_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "change_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "delete_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "view_contenttype",
+                "contenttypes",
+                "contenttype"
+            ],
+            [
+                "add_course",
+                "learning",
+                "course"
+            ],
+            [
+                "change_course",
+                "learning",
+                "course"
+            ],
+            [
+                "delete_course",
+                "learning",
+                "course"
+            ],
+            [
+                "modify_course",
+                "learning",
+                "course"
+            ],
+            [
+                "view_course",
+                "learning",
+                "course"
+            ],
+            [
+                "add_lesson",
+                "learning",
+                "lesson"
+            ],
+            [
+                "change_lesson",
+                "learning",
+                "lesson"
+            ],
+            [
+                "delete_lesson",
+                "learning",
+                "lesson"
+            ],
+            [
+                "modify_lesson",
+                "learning",
+                "lesson"
+            ],
+            [
+                "view_lesson",
+                "learning",
+                "lesson"
+            ],
+            [
+                "add_tracking",
+                "learning",
+                "tracking"
+            ],
+            [
+                "change_tracking",
+                "learning",
+                "tracking"
+            ],
+            [
+                "delete_tracking",
+                "learning",
+                "tracking"
+            ],
+            [
+                "view_tracking",
+                "learning",
+                "tracking"
+            ],
+            [
+                "add_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "change_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "delete_session",
+                "sessions",
+                "session"
+            ],
+            [
+                "view_session",
+                "sessions",
+                "session"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Автор",
+        "permissions": [
+            [
+                "add_course",
+                "learning",
+                "course"
+            ],
+            [
+                "change_course",
+                "learning",
+                "course"
+            ],
+            [
+                "delete_course",
+                "learning",
+                "course"
+            ],
+            [
+                "view_course",
+                "learning",
+                "course"
+            ],
+            [
+                "add_lesson",
+                "learning",
+                "lesson"
+            ],
+            [
+                "change_lesson",
+                "learning",
+                "lesson"
+            ],
+            [
+                "delete_lesson",
+                "learning",
+                "lesson"
+            ],
+            [
+                "view_lesson",
+                "learning",
+                "lesson"
+            ],
+            [
+                "add_tracking",
+                "learning",
+                "tracking"
+            ],
+            [
+                "change_tracking",
+                "learning",
+                "tracking"
+            ],
+            [
+                "delete_tracking",
+                "learning",
+                "tracking"
+            ],
+            [
+                "view_tracking",
+                "learning",
+                "tracking"
+            ]
+        ]
+    }
+},
+{
+    "model": "auth.group",
+    "fields": {
+        "name": "Ученик",
+        "permissions": [
+            [
+                "view_course",
+                "learning",
+                "course"
+            ],
+            [
+                "view_lesson",
+                "learning",
+                "lesson"
+            ],
+            [
+                "add_review",
+                "learning",
+                "review"
+            ],
+            [
+                "view_review",
+                "learning",
+                "review"
+            ],
+            [
+                "add_tracking",
+                "learning",
+                "tracking"
+            ],
+            [
+                "view_tracking",
+                "learning",
+                "tracking"
+            ]
+        ]
+    }
+},
+{
+    "model": "learning.lesson",
+    "pk": 1,
+    "fields": {
+        "course": 1,
+        "name": "Старт",
+        "preview": "Стартовый урок знакомство с фреймворком IDE"
+    }
+},
+{
+    "model": "learning.lesson",
+    "pk": 2,
+    "fields": {
+        "course": 1,
+        "name": "Установка Django",
+        "preview": "Вы научитесь устанавливать и инициализировать проект на Django"
+    }
+},
+{
+    "model": "learning.lesson",
+    "pk": 3,
+    "fields": {
+        "course": 1,
+        "name": "Маршрутизация",
+        "preview": "Варианты подключения маршрутов к моеделям"
+    }
+},
+{
+    "model": "learning.lesson",
+    "pk": 4,
+    "fields": {
+        "course": 1,
+        "name": "Административная панель",
+        "preview": "Вы научитесь настраивать административную панель Django"
+    }
+},
+{
+    "model": "learning.lesson",
+    "pk": 5,
+    "fields": {
+        "course": 1,
+        "name": "Контроллеры-классы",
+        "preview": "Изучение основных классов для отображения данных"
+    }
+},
+{
+    "model": "learning.lesson",
+    "pk": 7,
+    "fields": {
+        "course": 3,
+        "name": "Знакомство с DA",
+        "preview": "Вы познакомитесь с методами анализа данных"
+    }
+},
+{
+    "model": "learning.lesson",
+    "pk": 8,
+    "fields": {
+        "course": 4,
+        "name": "Вводный урок",
+        "preview": "Тестовый вводный урок"
+    }
+},
+{
+    "model": "learning.lesson",
+    "pk": 9,
+    "fields": {
+        "course": 2,
+        "name": "Что такое OSINT",
+        "preview": "тест"
+    }
+},
+{
+    "model": "learning.lesson",
+    "pk": 10,
+    "fields": {
+        "course": 5,
+        "name": "Для чего дизайнить ?",
+        "preview": "Тестовый ввод"
+    }
+},
+{
+    "model": "auth_app.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$LO1NgNEocwvvcRTDleWCZA$r1k+KgjeEpjObp7LLGNE+qGearWfZxdXMfqK3l6NSu8=",
+        "last_login": "2023-09-05T12:48:57.166Z",
+        "is_superuser": true,
+        "first_name": "Всеволод",
+        "last_name": "Смирнов",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-07-20T07:37:27Z",
+        "username": "",
+        "email": "vsevolod.smrnv@gmail.com",
+        "birthday": "2023-08-08",
+        "description": "",
+        "avatar": "",
+        "groups": [
+            [
+                "Администратор"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth_app.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$UeHYbKEcqCy4mgSVCe9qot$tuk4y0JK+mvmINTZisfRoFlRY2fJR2RSvZGr0F/T/nQ=",
+        "last_login": "2023-08-08T17:49:05.480Z",
+        "is_superuser": false,
+        "first_name": "Андрей",
+        "last_name": "Спиридонов",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-07-27T22:07:07Z",
+        "username": "",
+        "email": "test@test.ru",
+        "birthday": "2004-12-04",
+        "description": "test profile",
+        "avatar": "",
+        "groups": [
+            [
+                "Автор"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth_app.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$jOJtmEoGfCp6Qj52usOqZA$Q/58e3O4JSoqkH14nG243b3uKPgBWjDc6R07XijR/S4=",
+        "last_login": "2023-09-05T13:13:10.475Z",
+        "is_superuser": false,
+        "first_name": "Максим",
+        "last_name": "Арабов",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-08-08T17:43:06Z",
+        "username": "",
+        "email": "test1@test.ru",
+        "birthday": "2023-08-08",
+        "description": "",
+        "avatar": "users/1691772331.112084.png",
+        "groups": [
+            [
+                "Ученик"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "learning.review",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "test1@test.ru"
+        ],
+        "course": 4,
+        "content": "Отличный курс! Много полезного и актуального материала",
+        "send_date": "2023-08-11T15:33:34.579Z"
+    }
+},
+{
+    "model": "learning.review",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "test@test.ru"
+        ],
+        "course": 4,
+        "content": "Хороший курс, много информации и хорошо подобранные практические задания",
+        "send_date": "2023-08-11T15:34:14.875Z"
+    }
+},
+{
+    "model": "learning.review",
+    "pk": 7,
+    "fields": {
+        "user": [
+            "test1@test.ru"
+        ],
+        "course": 3,
+        "content": "Тестовый",
+        "send_date": "2023-08-11T20:02:33.933Z"
+    }
+},
+{
+    "model": "learning.tracking",
+    "pk": 27,
+    "fields": {
+        "lesson": 1,
+        "user": [
+            "test1@test.ru"
+        ],
+        "passed": false
+    }
+},
+{
+    "model": "learning.tracking",
+    "pk": 28,
+    "fields": {
+        "lesson": 2,
+        "user": [
+            "test1@test.ru"
+        ],
+        "passed": false
+    }
+},
+{
+    "model": "learning.tracking",
+    "pk": 29,
+    "fields": {
+        "lesson": 3,
+        "user": [
+            "test1@test.ru"
+        ],
+        "passed": false
+    }
+},
+{
+    "model": "learning.tracking",
+    "pk": 30,
+    "fields": {
+        "lesson": 4,
+        "user": [
+            "test1@test.ru"
+        ],
+        "passed": false
+    }
+},
+{
+    "model": "learning.tracking",
+    "pk": 31,
+    "fields": {
+        "lesson": 5,
+        "user": [
+            "test1@test.ru"
+        ],
+        "passed": false
+    }
+},
+{
+    "model": "learning.course",
+    "pk": 1,
+    "fields": {
+        "title": "Djnago Framework",
+        "description": "Разработка веб-приложения на основе фреймворка Django",
+        "start_date": "2023-07-20",
+        "duration": 3,
+        "price": 1000,
+        "count_lessons": 20,
+        "authors": [
+            [
+                "test1@test.ru"
+            ],
+            [
+                "test@test.ru"
+            ]
+        ]
+    }
+},
+{
+    "model": "learning.course",
+    "pk": 2,
+    "fields": {
+        "title": "OSINT",
+        "description": "Изучения технологии и приемов OSINT",
+        "start_date": "2023-07-20",
+        "duration": 2,
+        "price": 500,
+        "count_lessons": 15,
+        "authors": []
+    }
+},
+{
+    "model": "learning.course",
+    "pk": 3,
+    "fields": {
+        "title": "Data Analysys with python",
+        "description": "Изучение использования python  для анализа данных!!",
+        "start_date": "2023-09-06",
+        "duration": 5,
+        "price": 0,
+        "count_lessons": 23,
+        "authors": []
+    }
+},
+{
+    "model": "learning.course",
+    "pk": 4,
+    "fields": {
+        "title": "HTML-Верстка",
+        "description": "Изучение основы верстки веб-страниц основные тэги структура",
+        "start_date": "2023-07-30",
+        "duration": 1,
+        "price": 300,
+        "count_lessons": 12,
+        "authors": []
+    }
+},
+{
+    "model": "learning.course",
+    "pk": 5,
+    "fields": {
+        "title": "Дизайн UI/UX интерфейсов",
+        "description": "В ходе обучения вы познакомитесь с приемами для UI/UX дизайна и научитесь применять их на практике",
+        "start_date": "2023-08-17",
+        "duration": 2,
+        "price": 7600,
+        "count_lessons": 24,
+        "authors": []
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2023-07-20T11:17:46.848Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "course"
+        ],
+        "object_id": "1",
+        "object_repr": "Djnago Framework: Старт 2023-07-20",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2023-07-20T11:18:28.199Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "course"
+        ],
+        "object_id": "2",
+        "object_repr": "OSINT: Старт 2023-07-20",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2023-07-20T11:26:06.308Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "course"
+        ],
+        "object_id": "3",
+        "object_repr": "Data Analysys with python: Старт 2023-09-06",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2023-07-20T11:35:57.594Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "course"
+        ],
+        "object_id": "4",
+        "object_repr": "HTML-Верстка: Старт 2023-07-30",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2023-07-20T11:37:24.089Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "course"
+        ],
+        "object_id": "5",
+        "object_repr": "Дизайн UI/UX интерфейсов: Старт 2023-08-17",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2023-07-20T11:38:18.681Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "lesson"
+        ],
+        "object_id": "1",
+        "object_repr": "Lesson object (1)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2023-07-20T11:38:52.740Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "lesson"
+        ],
+        "object_id": "2",
+        "object_repr": "Lesson object (2)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2023-07-20T11:39:25.996Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "lesson"
+        ],
+        "object_id": "3",
+        "object_repr": "Lesson object (3)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2023-07-20T11:40:26.395Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "lesson"
+        ],
+        "object_id": "4",
+        "object_repr": "Lesson object (4)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2023-07-20T13:16:31.065Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "lesson"
+        ],
+        "object_id": "5",
+        "object_repr": "Lesson object (5)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2023-08-08T17:20:37.128Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "object_id": "1",
+        "object_repr": "Администратор",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2023-08-08T17:22:00.137Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "object_id": "2",
+        "object_repr": "Автор",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2023-08-08T17:29:28.548Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "object_id": "3",
+        "object_repr": "Ученик",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2023-08-08T17:35:27.522Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "auth_app",
+            "user"
+        ],
+        "object_id": "1",
+        "object_repr": "Участник Всеволод Смирнов: vsevolod.smrnv@gmail.com",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Groups\", \"Username\", \"First name\", \"Last name\", \"\\u0414\\u0430\\u0442\\u0430 \\u0440\\u043e\\u0436\\u0434\\u0435\\u043d\\u0438\\u044f\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2023-08-08T17:43:01.128Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "auth_app",
+            "user"
+        ],
+        "object_id": "2",
+        "object_repr": "Участник Андрей Спиридонов: test@test.ru",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Groups\", \"Username\", \"First name\", \"Last name\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2023-08-08T17:44:06.417Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "auth_app",
+            "user"
+        ],
+        "object_id": "5",
+        "object_repr": "Участник Максим Арабов: test1@test.ru",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2023-08-08T17:47:31.162Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "auth_app",
+            "user"
+        ],
+        "object_id": "2",
+        "object_repr": "Участник Андрей Спиридонов: test@test.ru",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2023-08-11T15:33:34.580Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "review"
+        ],
+        "object_id": "1",
+        "object_repr": "Review object (1)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2023-08-11T15:34:14.876Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "review"
+        ],
+        "object_id": "2",
+        "object_repr": "Review object (2)",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2023-08-11T16:45:31.114Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "auth_app",
+            "user"
+        ],
+        "object_id": "5",
+        "object_repr": "Участник Максим Арабов: test1@test.ru",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0424\\u043e\\u0442\\u043e\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2023-08-11T16:56:17.171Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "object_id": "3",
+        "object_repr": "Ученик",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2023-08-11T17:19:31.436Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "auth_app",
+            "user"
+        ],
+        "object_id": "5",
+        "object_repr": "Участник Максим Арабов: test1@test.ru",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2023-08-17T07:56:55.580Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "course"
+        ],
+        "object_id": "1",
+        "object_repr": "Djnago Framework: Старт 2023-07-20",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0442\\u043e\\u0440 \\u043a\\u0443\\u0440\\u0441\\u0430\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2023-08-31T12:10:10.106Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "course"
+        ],
+        "object_id": "12",
+        "object_repr": "Тестовый курс для кэша: Старт 2023-09-12",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2023-08-31T12:10:10.111Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "course"
+        ],
+        "object_id": "13",
+        "object_repr": "Тестовый курс для кэшафывфв: Старт 2023-09-12",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2023-08-31T12:10:28.032Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "course"
+        ],
+        "object_id": "11",
+        "object_repr": "Тестовый курс: Старт 2023-08-03",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0442\\u043e\\u0440 \\u043a\\u0443\\u0440\\u0441\\u0430\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2023-08-31T12:10:58.532Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "lesson"
+        ],
+        "object_id": "6",
+        "object_repr": "Тестовый курс: Старт 2023-08-03: Урок Тестовый урок для проверк",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2023-09-05T12:49:51.125Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "lesson"
+        ],
+        "object_id": "7",
+        "object_repr": "Data Analysys with python: Старт 2023-09-06: Урок Знакомство с DA",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2023-09-05T12:50:06.777Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "lesson"
+        ],
+        "object_id": "8",
+        "object_repr": "HTML-Верстка: Старт 2023-07-30: Урок Вводный урок",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2023-09-05T12:50:24.448Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "lesson"
+        ],
+        "object_id": "9",
+        "object_repr": "OSINT: Старт 2023-07-20: Урок Что такое OSINT",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2023-09-05T12:50:40.978Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "lesson"
+        ],
+        "object_id": "10",
+        "object_repr": "Дизайн UI/UX интерфейсов: Старт 2023-08-17: Урок Для чего дизайнить ?",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2023-09-05T13:12:24.047Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "tracking"
+        ],
+        "object_id": "25",
+        "object_repr": "Tracking object (25)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2023-09-05T13:12:28.469Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "tracking"
+        ],
+        "object_id": "23",
+        "object_repr": "Tracking object (23)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2023-09-05T13:12:39.688Z",
+        "user": [
+            "vsevolod.smrnv@gmail.com"
+        ],
+        "content_type": [
+            "learning",
+            "tracking"
+        ],
+        "object_id": "22",
+        "object_repr": "Tracking object (22)",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}
+]

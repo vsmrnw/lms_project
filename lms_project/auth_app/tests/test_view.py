@@ -59,13 +59,13 @@ class AuthAppTestCase(TestCase):
         self.index = reverse('index')
 
     def test_get_register_view(self):
-        response = self.client.get(path=self.register, redirect=True, redirect_chain=True)
+        response = self.client.get(path=self.register)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'register.html')
 
     def test_post_register_view(self):
         response = self.client.post(path=self.register,
-                                    data=self.user_valid_register_data, redirect=True, redirect_chain=True)
+                                    data=self.user_valid_register_data)
         self.assertEqual(response.status_code, 200)
 
     def test_post_register_view_with_email_existed(self):
