@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['']
+ALLOWED_HOSTS = ['*']
 
 INTERNAL_IPS = [
     '127.0.0.1',
@@ -59,7 +59,7 @@ MIDDLEWARE = [
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'session_store'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_COOKIE_AGE = 1209600
+SESSION_COOKIE_AGE = 31536000
 SESSION_SAVE_EVERY_REQUEST = False
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_SAMESITE = None
