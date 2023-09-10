@@ -18,8 +18,8 @@ class UserModelTestCase(TestCase):
 
     def test_user_to_str(self):
         user = get_user_model().objects.first()
-        self.assertEqual(str(user), f'Участник {self.user.first_name} '
-                                    f'{self.user.last_name}: {self.user.email}')
+        self.assertEqual(str(user), f'Участник {user.first_name} '
+                                    f'{user.last_name}: {user.email}')
 
     def test_path_from_avatar(self):
         user = get_user_model().objects.first()

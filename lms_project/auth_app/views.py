@@ -3,7 +3,6 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView
-from django.urls import reverse
 from django.views.generic import CreateView
 
 from .forms import LoginForm, RegisterForm

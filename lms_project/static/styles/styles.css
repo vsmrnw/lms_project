@@ -39,7 +39,7 @@ img {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 1% 0%;
+    margin: 1% 0;
     height: 25%;
 }
 .logo_container {
@@ -116,7 +116,7 @@ img {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    border: .5px solid rgba(134, 131, 131, 0.42);
+    border: 1px solid rgba(134, 131, 131, 0.42);
     border-radius: 0 0 10px 10px;
     z-index: 22;
 }
@@ -170,7 +170,7 @@ input, textarea {
     padding: 10px 5px 10px 32px;
     font-size: large;
     font-family: "Nunito", Helvetica, Arial, sans-serif;
-    border: .5px solid #fa940559;
+    border: 1px solid #fa940559;
     box-sizing: content-box;
     border-radius: 3px;
 }
@@ -290,7 +290,7 @@ input, textarea {
 }
 
 .course_preview:nth-child(2) {
-    margin: 0% 2.5%;
+    margin: 0 2.5%;
     padding-left: 0;
 }
 .course_container {
@@ -310,7 +310,7 @@ input, textarea {
 .courses_container .course_preview:hover {
     transform: scale(1.01);
     transition: all .4s ease-in-out;
-    border: 1.5px solid #fa9405;
+    border: 2px solid #fa9405;
     box-shadow: 0 0 40px 2px #fa94056e;
     -webkit-box-shadow: 0 0 40px 2px #fa94056e;
     -moz-box-shadow: 0 0 40px 2px #fa94056e;
