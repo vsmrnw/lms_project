@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required, permission_required
@@ -5,10 +6,11 @@ from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         PermissionRequiredMixin)
 from django.core.cache import cache
 from django.core.exceptions import NON_FIELD_ERRORS
+from django.core.serializers import serialize
 from django.db import transaction
 from django.db.models import Q, F, Sum, Count
 from django.db.models.signals import pre_save
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import (ListView, CreateView, UpdateView, DeleteView,
@@ -18,6 +20,7 @@ from .forms import (CourseForm, ReviewForm, LessonForm, OrderByAndSearchForm,
                     SettingForm)
 from .models import Course, Lesson, Tracking, Review
 from .signals import set_views, course_enroll, get_certificate
+from .serializers import CourseSerializer
 
 
 class MainView(ListView, FormView):
@@ -273,7 +276,7 @@ def remove_booking(request, course_id):
 @login_required
 def get_certificate_view(request, course_id):
     count_passed = Tracking.objects.filter(lesson__course=course_id,
-                                           user=request.user)\
+                                           user=request.user) \
         .aggregate(total_passed=Count('lesson__course'),
                    fact_passed=Sum('passed'))
 
@@ -282,3 +285,12 @@ def get_certificate_view(request, course_id):
         return HttpResponse('Сертификат отправлен на вашу почту')
     else:
         return HttpResponse('Вы еще не завершили курс полностью')
+
+
+def api_courses(request):
+    courses = Course.objects.all()
+    serialized_courses = CourseSerializer().serialize(queryset=courses,
+                                                      use_natural_foreign_keys=True)
+    return JsonResponse(data=dict(courses=json.loads(serialized_courses)),
+                        safe=False,
+                        json_dumps_params={'ensure_ascii': False, 'indent': 4})

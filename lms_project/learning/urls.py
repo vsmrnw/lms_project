@@ -19,4 +19,7 @@ urlpatterns = [
     path('settings/', SettingFormView.as_view(), name='settings'),
     path('get_certificate/<int:course_id>/', get_certificate_view, name='get_certificate'),
     path('tracking/', TrackingView.as_view(), name='tracking'),
+
+    #API urls
+    path('api_courses/', api_courses, name='api_courses'),
 ]
