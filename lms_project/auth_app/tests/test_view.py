@@ -31,13 +31,19 @@ class AuthAppTestCase(TestCase):
             'password1': 'student1234',
             'password2': 'student4321',
         }
+        self.user_valid_register_data2 = {
+            'username': 'student',
+            'email': 'student@example.com',
+            'birthday': timezone.now().date(),
+            'password': 'student1234',
+        }
         self.user_login_data_with_remember = {
-            'username': 'example@example.com',
+            'username': 'student@example.com',
             'password': 'student1234',
             'is_remember': 'on',
         }
         self.user_login_data_without_remember = {
-            'username': 'example@example.com',
+            'username': 'student@example.com',
             'password': 'student1234',
             'is_remember': 'off',
         }
@@ -69,11 +75,9 @@ class AuthAppTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_post_register_view_with_email_existed(self):
-        get_user_model().objects.create_user(**self.user_valid_register_data)
-        response = self.client.post(path=self.register, data=self.user_valid_register_data)
-        self.assertFormError(response, 'form', 'email', 'Участник с таким '
-                                                        'Email уже '
-                                                        'существует.')
+        get_user_model().objects.create_user(**self.user_valid_register_data2)
+        response = self.client.post(path=self.register, data=self.user_valid_register_data2)
+        self.assertFormError(response, 'form', 'email', 'Участник с таким Email уже существует.')
 
     def test_get_login_view(self):
         response = self.client.get(path=self.login)
@@ -81,7 +85,7 @@ class AuthAppTestCase(TestCase):
         self.assertTemplateUsed(response, 'login.html')
 
     def test_post_login_view_with_remember(self):
-        get_user_model().objects.create_user(**self.user_valid_register_data)
+        get_user_model().objects.create_user(**self.user_valid_register_data2)
         response = self.client.post(path=self.login,
                                     data=self.user_login_data_with_remember)
         self.assertEqual(response.status_code, 302)
@@ -92,9 +96,9 @@ class AuthAppTestCase(TestCase):
         self.assertTrue(response_index.context['user'].is_authenticated)
 
     def test_post_login_view_without_remember(self):
-        get_user_model().objects.create_user(**self.user_valid_register_data)
+        get_user_model().objects.create_user(**self.user_valid_register_data2)
         response = self.client.post(path=self.login,
-                                    data=self.user_login_data_with_remember)
+                                    data=self.user_login_data_without_remember)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(self.client.session.get_expiry_age(),
                          settings.SESSION_COOKIE_AGE)

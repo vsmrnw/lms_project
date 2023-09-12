@@ -7,7 +7,7 @@ from django.views.generic import CreateView
 
 from .forms import LoginForm, RegisterForm
 from .signals import account_access
-
+from django.urls import reverse
 
 class UserLoginView(LoginView):
     authentication_form = LoginForm
@@ -31,10 +31,11 @@ class UserLoginView(LoginView):
 class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = 'register.html'
-    success_url = 'index'
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user)
-
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('index')

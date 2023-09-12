@@ -155,26 +155,6 @@
                 "lesson"
             ],
             [
-                "add_review",
-                "learning",
-                "review"
-            ],
-            [
-                "change_review",
-                "learning",
-                "review"
-            ],
-            [
-                "delete_review",
-                "learning",
-                "review"
-            ],
-            [
-                "view_review",
-                "learning",
-                "review"
-            ],
-            [
                 "add_tracking",
                 "learning",
                 "tracking"
@@ -324,126 +304,6 @@
     }
 },
 {
-    "model": "sessions.session",
-    "pk": "1a2eiqzp3su7iat6stjwmlti8sm62rlz",
-    "fields": {
-        "session_data": ".eJxVjMsOgjAQRf-la9P0NRRYuucLjCHTdrBVQxNa3Bj_XUhY6Paec8-bjbjWOK6FljEF1jPJTr-bQ_-geQfhjvMtc5_nuiTHd4UftPAhB3qeD_cvELHE7d2Blr4RgaRotdHYSARrscVAvjEaFBjhNAmnJIAF6ycE3QF2igwZb7fohK-8LqlSYf3l-vkCWtI8sQ:1qYXq8:JB1a9eDge6CxfvPh1s4t_GUsmV8S-AYZCIu5XmHCHKo",
-        "expire_date": "2023-09-05T20:19:00.400Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "5j8dn9z3zxxyfzlm50hqf2ggake59dgr",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAQRe_C2hBgGCgu3fcMZIBRqoYmpV0Z765NutDtf-_9l4i0rTVunZc4FXEWWpx-t0T5wW0H5U7tNss8t3WZktwVedAux7nw83K4fweVev3WAUFnpwprNYAFcprQexqocHYW0KBVCVgloxE9-nwlhIAUDFu22Yv3B7zSNwc:1qYWlm:vWJGUJ-DnmkhHrBmXMwgcqO7nDbstr6SG4cetfwATNc",
-        "expire_date": "2023-09-05T19:10:26.115Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "73hyypkhw6rhx0xrazu6nqcubgz5476a",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAQRe_C2hBgGCgu3fcMZIBRqoYmpV0Z765NutDtf-_9l4i0rTVunZc4FXEWWpx-t0T5wW0H5U7tNss8t3WZktwVedAux7nw83K4fweVev3WAUFnpwprNYAFcprQexqocHYW0KBVCVgloxE9-nwlhIAUDFu22Yv3B7zSNwc:1qXNRr:NsuQkUdqHe-plWdm9HYAM9N0Y6TX-B_E9vC4XUgjkkA",
-        "expire_date": "2023-09-02T15:01:07.687Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "74y7tjydxht8tbr26s3qlbsqf3f3codr",
-    "fields": {
-        "session_data": ".eJxVjkEOgyAURO_CuiEgfFCX3XsG8oHfQttoItoujHcvJi7a7byZl9mYw3VJbi00uxxZzyS7_GYew5PGA8QHjveJh2lc5uz5UeEnLXyYIr2uZ_dPkLCkuu5AyWBEJClapRUaiWAtthgpGK2gAS28IuEbCWDBhhuC6gC7hjTpYKv0nelTWL_Vi73e9y9Teju6:1qa0Rc:ZVDmPakWcOom9T26fgkT6SlWYW5fOaS5nIu62fQpQWc",
-        "expire_date": "2023-09-09T21:03:44.227Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "7xbs3qbrjzivhjf59pc8f78ee8d3ebgn",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAQRe_C2hBgGCgu3fcMZIBRqoYmpV0Z765NutDtf-_9l4i0rTVunZc4FXEWWpx-t0T5wW0H5U7tNss8t3WZktwVedAux7nw83K4fweVev3WAUFnpwprNYAFcprQexqocHYW0KBVCVgloxE9-nwlhIAUDFu22Yv3B7zSNwc:1qYWlV:XMhMXTXHcIblWLe8Y1w9_ONDTnXywnsI27cQYpRBYM0",
-        "expire_date": "2023-09-05T19:10:09.738Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "afr0flhzj095fzz7odpldqndnjcnibyh",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAQRe_C2hBgGCgu3fcMZIBRqoYmpV0Z765NutDtf-_9l4i0rTVunZc4FXEWWpx-t0T5wW0H5U7tNss8t3WZktwVedAux7nw83K4fweVev3WAUFnpwprNYAFcprQexqocHYW0KBVCVgloxE9-nwlhIAUDFu22Yv3B7zSNwc:1qXSEx:hL6OWqyp6Mh3_1Y-ypvyk1DRu41qg1ITUh_zRk44kSA",
-        "expire_date": "2023-09-02T20:08:07.848Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "do4s0779tshctf07izghw33n173rc5ad",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAQRe_C2hBgGCgu3fcMZIBRqoYmpV0Z765NutDtf-_9l4i0rTVunZc4FXEWWpx-t0T5wW0H5U7tNss8t3WZktwVedAux7nw83K4fweVev3WAUFnpwprNYAFcprQexqocHYW0KBVCVgloxE9-nwlhIAUDFu22Yv3B7zSNwc:1qXO1Q:sHx3jArch3vXTRJzaeVF98iZCkFevY_c8G7l_RetpQ8",
-        "expire_date": "2023-09-02T15:37:52.552Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "f3kvvr1pro9gj21rblijczc46o3kkpn1",
-    "fields": {
-        "session_data": ".eJxVjkEOgyAURO_C2hAQvqjL7nuCpjEf-FbaRhJRuzDevZi4aLdvZl5mYx0u89AtiaYueNYyyYpfZtG9aDwC_8TxEbmL4zwFy48KP9PEr9HT-3J2_wQDpiGvG1DSVcKTFLXSCiuJYAzW6MlVWkEJWlhFwpYSwIBxPYJqAJuSNGlnsnQN9Ems3fLFVu0F63GNyxRmyvB23788l0Fj:1qZy5U:TWXNnjheLeCktd87gF8guB7pU9mLMWgIEiEWY-oS8zM",
-        "expire_date": "2023-09-09T18:32:44.078Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "fy423g9ofae6tbuoj1zh57r0mnun1ta0",
-    "fields": {
-        "session_data": ".eJxVjDEOgzAQBP9yNbJs7MPgMj1vQGf7EkgiI2FICsTfAxENzRazs7vCZ-BvBreCAqeKf24FdLTMfbdknrohgtvxhXkKL05HEZ-UHqMIY5qnwYtDEWebRTtGft9O93LQU-73dYNahUpGVrLWRlOlCK2lmiKHymgs0UivWfpSIVq04U6oG6SmZMMmWNh-31Q8ww:1qYX15:Xz1m5N3ytONDKdy5oLFyMU6mJB6ZyryUEZtmeps6n_Q",
-        "expire_date": "2023-08-22T19:26:45.689Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "hu7r03acrxh47bi8oa0xxpaafquogcbw",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAQRe_C2hBgGCgu3fcMZIBRqoYmpV0Z765NutDtf-_9l4i0rTVunZc4FXEWWpx-t0T5wW0H5U7tNss8t3WZktwVedAux7nw83K4fweVev3WAUFnpwprNYAFcprQexqocHYW0KBVCVgloxE9-nwlhIAUDFu22Yv3B7zSNwc:1qXOXy:ag4R8lY2BoyZPW22Jdwd5arULBuHkX8FOME17JBqPuo",
-        "expire_date": "2023-09-02T16:11:30.516Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "jd0f5a1xt3felcd7iragbvlp8y8wi7mx",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAQRe_C2hBgGCgu3fcMZIBRqoYmpV0Z765NutDtf-_9l4i0rTVunZc4FXEWWpx-t0T5wW0H5U7tNss8t3WZktwVedAux7nw83K4fweVev3WAUFnpwprNYAFcprQexqocHYW0KBVCVgloxE9-nwlhIAUDFu22Yv3B7zSNwc:1qUmCP:69eL6DQPDyV7bPKRpCZjZfXDQSde-wb66conXy6_y_o",
-        "expire_date": "2023-08-26T10:50:25.970Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "rdod9dgl165u8t4zsknbtc0djo4alhvt",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAQRe_C2hBgGCgu3fcMZIBRqoYmpV0Z765NutDtf-_9l4i0rTVunZc4FXEWWpx-t0T5wW0H5U7tNss8t3WZktwVedAux7nw83K4fweVev3WAUFnpwprNYAFcprQexqocHYW0KBVCVgloxE9-nwlhIAUDFu22Yv3B7zSNwc:1qYXEI:9TvMRrTy8bFy5OXLRJXwaQL3wGunThlJOKUiT2rNeTc",
-        "expire_date": "2023-08-22T19:40:24.977Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "sr31mkyehcl5xhc5ult0qhl6lh163m3b",
-    "fields": {
-        "session_data": ".eJxVjEEOgyAQRe8y64aAMKAuu_cMZIBpsW00EW0XxrtXExft9r_33wqeljn7pfDk-wQtKLj8boHik4cDpAcN91HEcZinPohDESctohsTv66n-xfIVPL-blCraGViJWttNFlF6BzVlDhao7FCI4NmGSqF6NDFG6FukJqKDZvo9ui750-BdgUDrdq2L1ODO7o:1qaiqW:FrmBNhwtqxSt4jcZDPKyGXUgr7tLfCKDT0fM9pjEKkk",
-        "expire_date": "2023-09-11T20:28:24.080Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "wofcsb76rlniq147ppn8nfrznlwumgek",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAQRe_C2hBgGCgu3fcMZIBRqoYmpV0Z765NutDtf-_9l4i0rTVunZc4FXEWWpx-t0T5wW0H5U7tNss8t3WZktwVedAux7nw83K4fweVev3WAUFnpwprNYAFcprQexqocHYW0KBVCVgloxE9-nwlhIAUDFu22Yv3B7zSNwc:1qZcsJ:w70heynEFpmxZVtQgUfSaptsQZ5tS2sD-xGah8k0Ho0",
-        "expire_date": "2023-09-08T19:53:43.483Z"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "ymdvpbb7ke10d1qq3u949igh3dsswsd2",
-    "fields": {
-        "session_data": ".eJxVjkEOgyAURO_CuiEgfFCX3XsG8oHfQttoItoujHcvJi7a7byZl9mYw3VJbi00uxxZzyS7_GYew5PGA8QHjveJh2lc5uz5UeEnLXyYIr2uZ_dPkLCkuu5AyWBEJClapRUaiWAtthgpGK2gAS28IuEbCWDBhhuC6gC7hjTpYKv0nelTWL_Viz3s-xdTfTu7:1qYX2G:AEKcUAddxAt1bHFqRDP_ML5GogsHnE-kSeiA6U4ZiFU",
-        "expire_date": "2023-08-22T19:27:58.699Z"
-    }
-},
-{
     "model": "learning.lesson",
     "pk": 1,
     "fields": {
@@ -492,106 +352,43 @@
     "model": "learning.lesson",
     "pk": 7,
     "fields": {
-        "course": 1,
-        "name": "Тестовый урокasdasd",
-        "preview": "Проверка тестирования добавления урока с помощью сигнала"
+        "course": 3,
+        "name": "Знакомство с DA",
+        "preview": "Вы познакомитесь с методами анализа данных"
     }
 },
 {
     "model": "learning.lesson",
     "pk": 8,
     "fields": {
-        "course": 1,
-        "name": "Тест",
-        "preview": "123"
+        "course": 4,
+        "name": "Вводный урок",
+        "preview": "Тестовый вводный урок"
     }
 },
 {
     "model": "learning.lesson",
     "pk": 9,
     "fields": {
-        "course": 1,
-        "name": "Циклы2",
-        "preview": "Продолжим рассмотрение циклов и углубимся с темы связанные с их работой"
+        "course": 2,
+        "name": "Что такое OSINT",
+        "preview": "тест"
     }
 },
 {
     "model": "learning.lesson",
     "pk": 10,
     "fields": {
-        "course": 4,
-        "name": "Тестовый урок",
-        "preview": "Тест"
-    }
-},
-{
-    "model": "learning.lesson",
-    "pk": 11,
-    "fields": {
-        "course": 1,
-        "name": "ООП",
-        "preview": "Посмотрим на ООП"
-    }
-},
-{
-    "model": "learning.lesson",
-    "pk": 12,
-    "fields": {
-        "course": 4,
-        "name": "Базовые понятия верстки",
-        "preview": "Первый урок по основам верстки"
-    }
-},
-{
-    "model": "learning.lesson",
-    "pk": 13,
-    "fields": {
-        "course": 4,
-        "name": "Основные тэги",
-        "preview": "Рассмотрим основные тэги используемые в верстке"
-    }
-},
-{
-    "model": "learning.lesson",
-    "pk": 14,
-    "fields": {
-        "course": 2,
-        "name": "Что такое OSINT ?",
-        "preview": "Рассмотрим понятие и историю появления OSINT"
-    }
-},
-{
-    "model": "learning.lesson",
-    "pk": 15,
-    "fields": {
-        "course": 2,
-        "name": "Инструменты OSINT",
-        "preview": "Популярные инструменты применяемые в OSINT"
-    }
-},
-{
-    "model": "learning.lesson",
-    "pk": 16,
-    "fields": {
         "course": 5,
-        "name": "Вводный урок",
-        "preview": "Вводный урок является обзором на понятия и сферу применения дизайна"
-    }
-},
-{
-    "model": "learning.lesson",
-    "pk": 17,
-    "fields": {
-        "course": 3,
-        "name": "Зачем нужен DA",
-        "preview": "Что такое Data Analysys и сферы его применения ?"
+        "name": "Для чего дизайнить ?",
+        "preview": "Тестовый ввод"
     }
 },
 {
     "model": "auth_app.user",
     "fields": {
         "password": "pbkdf2_sha256$600000$LO1NgNEocwvvcRTDleWCZA$r1k+KgjeEpjObp7LLGNE+qGearWfZxdXMfqK3l6NSu8=",
-        "last_login": "2023-09-10T18:14:21.229Z",
+        "last_login": "2023-09-05T12:48:57.166Z",
         "is_superuser": true,
         "first_name": "Всеволод",
         "last_name": "Смирнов",
@@ -615,7 +412,7 @@
     "model": "auth_app.user",
     "fields": {
         "password": "pbkdf2_sha256$600000$UeHYbKEcqCy4mgSVCe9qot$tuk4y0JK+mvmINTZisfRoFlRY2fJR2RSvZGr0F/T/nQ=",
-        "last_login": "2023-09-10T16:29:39.564Z",
+        "last_login": "2023-08-08T17:49:05.480Z",
         "is_superuser": false,
         "first_name": "Андрей",
         "last_name": "Спиридонов",
@@ -638,8 +435,8 @@
 {
     "model": "auth_app.user",
     "fields": {
-        "password": "pbkdf2_sha256$600000$XxcydJDmz0OSrm6L14f3up$k57NyoErTwYcciYSiO1GGieqdETrFBWvCkvAKE5obeE=",
-        "last_login": "2023-09-10T16:36:21.930Z",
+        "password": "pbkdf2_sha256$600000$jOJtmEoGfCp6Qj52usOqZA$Q/58e3O4JSoqkH14nG243b3uKPgBWjDc6R07XijR/S4=",
+        "last_login": "2023-09-05T13:13:10.475Z",
         "is_superuser": false,
         "first_name": "Максим",
         "last_name": "Арабов",
@@ -662,18 +459,18 @@
 {
     "model": "auth_app.user",
     "fields": {
-        "password": "pbkdf2_sha256$600000$diubMd6JMfHhLZ1KBR6Mrt$YNc5fsXWnDl9x+PR/9WJakuMhb4lxyWtaVSbJlabisc=",
-        "last_login": "2023-08-26T16:29:17.367Z",
+        "password": "pbkdf2_sha256$600000$YpxQNx7Gugywa4vBF7wL4h$+yw06fGI2hIXBQ1NBGqe/Ri8Z5Q9zKfdJtP/ODqAlnk=",
+        "last_login": "2023-09-12T10:39:12.630Z",
         "is_superuser": false,
-        "first_name": "Андрей",
-        "last_name": "Хромец",
+        "first_name": "Test",
+        "last_name": "Testov",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2023-08-26T16:29:17.007Z",
+        "date_joined": "2023-09-12T10:39:12.161Z",
         "username": "",
         "email": "testov@test.ru",
-        "birthday": "1992-05-12",
-        "description": "",
+        "birthday": "1995-05-12",
+        "description": "asdad",
         "avatar": "",
         "groups": [
             [
@@ -686,18 +483,42 @@
 {
     "model": "auth_app.user",
     "fields": {
-        "password": "pbkdf2_sha256$600000$xxbykj7I9eyDyXoz2ifxsP$JqfmSTxGMV8/xXLARSzmDNH/ajFPhMNhjIShNq2vM+M=",
-        "last_login": "2023-08-26T20:20:12.810Z",
+        "password": "pbkdf2_sha256$600000$4UJ0Ha2HaCjIluFlPD5p7z$WaXyoRHHGMTjiu1KltrCEvB8+ppfD2YXWhCaa+GrMfQ=",
+        "last_login": "2023-09-12T10:46:28.798Z",
         "is_superuser": false,
-        "first_name": "Питер",
-        "last_name": "Паркер",
+        "first_name": "Test",
+        "last_name": "Testov",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2023-08-26T20:20:12.332Z",
+        "date_joined": "2023-09-12T10:42:46.140Z",
         "username": "",
-        "email": "p.parker@spider.com",
-        "birthday": "1992-05-12",
-        "description": "",
+        "email": "testov@tesst.ru",
+        "birthday": "1995-05-12",
+        "description": "asdad",
+        "avatar": "",
+        "groups": [
+            [
+                "Ученик"
+            ]
+        ],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth_app.user",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$4AHOE4foxTBKEbveQtewko$SKXkoLkaK3b16ii3bGZ9dFlh9Ryi6MernXh+uXHvnW4=",
+        "last_login": "2023-09-12T12:04:37.954Z",
+        "is_superuser": false,
+        "first_name": "Sesss",
+        "last_name": "asdsad",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-09-12T12:04:37.522Z",
+        "username": "",
+        "email": "test2@test.ru",
+        "birthday": "1995-05-12",
+        "description": "sadasds",
         "avatar": "",
         "groups": [
             [
@@ -711,9 +532,7 @@
     "model": "learning.review",
     "pk": 1,
     "fields": {
-        "user": [
-            "test1@test.ru"
-        ],
+        "user": "Максим Арабов",
         "course": 4,
         "content": "Отличный курс! Много полезного и актуального материала",
         "send_date": "2023-08-11T15:33:34.579Z"
@@ -723,9 +542,7 @@
     "model": "learning.review",
     "pk": 2,
     "fields": {
-        "user": [
-            "test@test.ru"
-        ],
+        "user": "Андрей Спиридонов",
         "course": 4,
         "content": "Хороший курс, много информации и хорошо подобранные практические задания",
         "send_date": "2023-08-11T15:34:14.875Z"
@@ -735,166 +552,54 @@
     "model": "learning.review",
     "pk": 7,
     "fields": {
-        "user": [
-            "test1@test.ru"
-        ],
+        "user": "Максим Арабов",
         "course": 3,
         "content": "Тестовый",
         "send_date": "2023-08-11T20:02:33.933Z"
     }
 },
 {
-    "model": "learning.review",
-    "pk": 9,
-    "fields": {
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
-        "course": 1,
-        "content": "Классный курс",
-        "send_date": "2023-08-19T18:13:46.597Z"
-    }
-},
-{
     "model": "learning.tracking",
-    "pk": 1,
+    "pk": 27,
     "fields": {
         "lesson": 1,
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Максим Арабов",
         "passed": false
     }
 },
 {
     "model": "learning.tracking",
-    "pk": 2,
+    "pk": 28,
     "fields": {
         "lesson": 2,
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Максим Арабов",
         "passed": false
     }
 },
 {
     "model": "learning.tracking",
-    "pk": 3,
+    "pk": 29,
     "fields": {
         "lesson": 3,
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Максим Арабов",
         "passed": false
     }
 },
 {
     "model": "learning.tracking",
-    "pk": 4,
+    "pk": 30,
     "fields": {
         "lesson": 4,
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Максим Арабов",
         "passed": false
     }
 },
 {
     "model": "learning.tracking",
-    "pk": 5,
+    "pk": 31,
     "fields": {
         "lesson": 5,
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
-        "passed": false
-    }
-},
-{
-    "model": "learning.tracking",
-    "pk": 103,
-    "fields": {
-        "lesson": 1,
-        "user": [
-            "test1@test.ru"
-        ],
-        "passed": false
-    }
-},
-{
-    "model": "learning.tracking",
-    "pk": 104,
-    "fields": {
-        "lesson": 2,
-        "user": [
-            "test1@test.ru"
-        ],
-        "passed": false
-    }
-},
-{
-    "model": "learning.tracking",
-    "pk": 105,
-    "fields": {
-        "lesson": 3,
-        "user": [
-            "test1@test.ru"
-        ],
-        "passed": false
-    }
-},
-{
-    "model": "learning.tracking",
-    "pk": 106,
-    "fields": {
-        "lesson": 4,
-        "user": [
-            "test1@test.ru"
-        ],
-        "passed": false
-    }
-},
-{
-    "model": "learning.tracking",
-    "pk": 107,
-    "fields": {
-        "lesson": 5,
-        "user": [
-            "test1@test.ru"
-        ],
-        "passed": false
-    }
-},
-{
-    "model": "learning.tracking",
-    "pk": 108,
-    "fields": {
-        "lesson": 7,
-        "user": [
-            "test1@test.ru"
-        ],
-        "passed": false
-    }
-},
-{
-    "model": "learning.tracking",
-    "pk": 109,
-    "fields": {
-        "lesson": 8,
-        "user": [
-            "test1@test.ru"
-        ],
-        "passed": false
-    }
-},
-{
-    "model": "learning.tracking",
-    "pk": 110,
-    "fields": {
-        "lesson": 9,
-        "user": [
-            "test1@test.ru"
-        ],
+        "user": "Максим Арабов",
         "passed": false
     }
 },
@@ -907,11 +612,10 @@
         "start_date": "2023-07-20",
         "duration": 3,
         "price": 1000,
-        "count_lessons": 8,
+        "count_lessons": 20,
         "authors": [
-            [
-                "vsevolod.smrnv@gmail.com"
-            ]
+            "Максим Арабов",
+            "Андрей Спиридонов"
         ]
     }
 },
@@ -938,14 +642,7 @@
         "duration": 5,
         "price": 0,
         "count_lessons": 23,
-        "authors": [
-            [
-                "test1@test.ru"
-            ],
-            [
-                "test@test.ru"
-            ]
-        ]
+        "authors": []
     }
 },
 {
@@ -979,9 +676,7 @@
     "pk": 1,
     "fields": {
         "action_time": "2023-07-20T11:17:46.848Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "course"
@@ -997,9 +692,7 @@
     "pk": 2,
     "fields": {
         "action_time": "2023-07-20T11:18:28.199Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "course"
@@ -1015,9 +708,7 @@
     "pk": 3,
     "fields": {
         "action_time": "2023-07-20T11:26:06.308Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "course"
@@ -1033,9 +724,7 @@
     "pk": 4,
     "fields": {
         "action_time": "2023-07-20T11:35:57.594Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "course"
@@ -1051,9 +740,7 @@
     "pk": 5,
     "fields": {
         "action_time": "2023-07-20T11:37:24.089Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "course"
@@ -1069,9 +756,7 @@
     "pk": 6,
     "fields": {
         "action_time": "2023-07-20T11:38:18.681Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "lesson"
@@ -1087,9 +772,7 @@
     "pk": 7,
     "fields": {
         "action_time": "2023-07-20T11:38:52.740Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "lesson"
@@ -1105,9 +788,7 @@
     "pk": 8,
     "fields": {
         "action_time": "2023-07-20T11:39:25.996Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "lesson"
@@ -1123,9 +804,7 @@
     "pk": 9,
     "fields": {
         "action_time": "2023-07-20T11:40:26.395Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "lesson"
@@ -1141,9 +820,7 @@
     "pk": 10,
     "fields": {
         "action_time": "2023-07-20T13:16:31.065Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "lesson"
@@ -1159,9 +836,7 @@
     "pk": 11,
     "fields": {
         "action_time": "2023-08-08T17:20:37.128Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "auth",
             "group"
@@ -1177,9 +852,7 @@
     "pk": 12,
     "fields": {
         "action_time": "2023-08-08T17:22:00.137Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "auth",
             "group"
@@ -1195,9 +868,7 @@
     "pk": 13,
     "fields": {
         "action_time": "2023-08-08T17:29:28.548Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "auth",
             "group"
@@ -1213,9 +884,7 @@
     "pk": 14,
     "fields": {
         "action_time": "2023-08-08T17:35:27.522Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "auth_app",
             "user"
@@ -1231,9 +900,7 @@
     "pk": 15,
     "fields": {
         "action_time": "2023-08-08T17:43:01.128Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "auth_app",
             "user"
@@ -1249,9 +916,7 @@
     "pk": 16,
     "fields": {
         "action_time": "2023-08-08T17:44:06.417Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "auth_app",
             "user"
@@ -1267,9 +932,7 @@
     "pk": 17,
     "fields": {
         "action_time": "2023-08-08T17:47:31.162Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "auth_app",
             "user"
@@ -1285,9 +948,7 @@
     "pk": 18,
     "fields": {
         "action_time": "2023-08-11T15:33:34.580Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "review"
@@ -1303,9 +964,7 @@
     "pk": 19,
     "fields": {
         "action_time": "2023-08-11T15:34:14.876Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "review"
@@ -1321,9 +980,7 @@
     "pk": 20,
     "fields": {
         "action_time": "2023-08-11T16:45:31.114Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "auth_app",
             "user"
@@ -1339,9 +996,7 @@
     "pk": 21,
     "fields": {
         "action_time": "2023-08-11T16:56:17.171Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "auth",
             "group"
@@ -1357,9 +1012,7 @@
     "pk": 22,
     "fields": {
         "action_time": "2023-08-11T17:19:31.436Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "user": "Всеволод Смирнов",
         "content_type": [
             "auth_app",
             "user"
@@ -1374,16 +1027,14 @@
     "model": "admin.logentry",
     "pk": 23,
     "fields": {
-        "action_time": "2023-08-16T22:00:33.196Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "action_time": "2023-08-17T07:56:55.580Z",
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "course"
         ],
-        "object_id": "3",
-        "object_repr": "Data Analysys with python: Старт 2023-09-06",
+        "object_id": "1",
+        "object_repr": "Djnago Framework: Старт 2023-07-20",
         "action_flag": 2,
         "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0442\\u043e\\u0440 \\u043a\\u0443\\u0440\\u0441\\u0430\"]}}]"
     }
@@ -1392,34 +1043,30 @@
     "model": "admin.logentry",
     "pk": 24,
     "fields": {
-        "action_time": "2023-08-19T15:04:01.678Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "action_time": "2023-08-31T12:10:10.106Z",
+        "user": "Всеволод Смирнов",
         "content_type": [
-            "auth",
-            "group"
+            "learning",
+            "course"
         ],
-        "object_id": "1",
-        "object_repr": "Администратор",
-        "action_flag": 2,
-        "change_message": "[{\"changed\": {\"fields\": [\"Permissions\"]}}]"
+        "object_id": "12",
+        "object_repr": "Тестовый курс для кэша: Старт 2023-09-12",
+        "action_flag": 3,
+        "change_message": ""
     }
 },
 {
     "model": "admin.logentry",
     "pk": 25,
     "fields": {
-        "action_time": "2023-08-19T15:05:03.102Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "action_time": "2023-08-31T12:10:10.111Z",
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
-            "review"
+            "course"
         ],
-        "object_id": "8",
-        "object_repr": "Review object (8)",
+        "object_id": "13",
+        "object_repr": "Тестовый курс для кэшафывфв: Старт 2023-09-12",
         "action_flag": 3,
         "change_message": ""
     }
@@ -1428,16 +1075,14 @@
     "model": "admin.logentry",
     "pk": 26,
     "fields": {
-        "action_time": "2023-08-19T15:05:15.097Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "action_time": "2023-08-31T12:10:28.032Z",
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "course"
         ],
-        "object_id": "1",
-        "object_repr": "Djnago Framework: Старт 2023-07-20",
+        "object_id": "11",
+        "object_repr": "Тестовый курс: Старт 2023-08-03",
         "action_flag": 2,
         "change_message": "[{\"changed\": {\"fields\": [\"\\u0410\\u0432\\u0442\\u043e\\u0440 \\u043a\\u0443\\u0440\\u0441\\u0430\"]}}]"
     }
@@ -1446,70 +1091,62 @@
     "model": "admin.logentry",
     "pk": 27,
     "fields": {
-        "action_time": "2023-08-26T16:45:30.565Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "action_time": "2023-08-31T12:10:58.532Z",
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
-            "course"
+            "lesson"
         ],
-        "object_id": "1",
-        "object_repr": "Djnago Framework: Старт 2023-07-20",
-        "action_flag": 2,
-        "change_message": "[{\"changed\": {\"fields\": [\"\\u041a\\u043e\\u043b\\u0438\\u0447\\u0435\\u0441\\u0442\\u0432\\u043e \\u0443\\u0440\\u043e\\u043a\\u043e\\u0432\"]}}]"
+        "object_id": "6",
+        "object_repr": "Тестовый курс: Старт 2023-08-03: Урок Тестовый урок для проверк",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
     }
 },
 {
     "model": "admin.logentry",
     "pk": 28,
     "fields": {
-        "action_time": "2023-08-26T18:31:47.790Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "action_time": "2023-09-05T12:49:51.125Z",
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
-            "tracking"
+            "lesson"
         ],
-        "object_id": "6",
-        "object_repr": "Tracking object (6)",
-        "action_flag": 3,
-        "change_message": ""
+        "object_id": "7",
+        "object_repr": "Data Analysys with python: Старт 2023-09-06: Урок Знакомство с DA",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
     }
 },
 {
     "model": "admin.logentry",
     "pk": 29,
     "fields": {
-        "action_time": "2023-08-26T18:31:56.240Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "action_time": "2023-09-05T12:50:06.777Z",
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "lesson"
         ],
-        "object_id": "6",
-        "object_repr": "Djnago Framework: Старт 2023-07-20: Урок 1",
-        "action_flag": 3,
-        "change_message": ""
+        "object_id": "8",
+        "object_repr": "HTML-Верстка: Старт 2023-07-30: Урок Вводный урок",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
     }
 },
 {
     "model": "admin.logentry",
     "pk": 30,
     "fields": {
-        "action_time": "2023-08-28T20:28:09.007Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "action_time": "2023-09-05T12:50:24.448Z",
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "lesson"
         ],
-        "object_id": "10",
-        "object_repr": "HTML-Верстка: Старт 2023-07-30: Урок Тестовый урок",
+        "object_id": "9",
+        "object_repr": "OSINT: Старт 2023-07-20: Урок Что такое OSINT",
         "action_flag": 1,
         "change_message": "[{\"added\": {}}]"
     }
@@ -1518,16 +1155,14 @@
     "model": "admin.logentry",
     "pk": 31,
     "fields": {
-        "action_time": "2023-09-10T18:14:57.690Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "action_time": "2023-09-05T12:50:40.978Z",
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
             "lesson"
         ],
-        "object_id": "12",
-        "object_repr": "HTML-Верстка: Старт 2023-07-30: Урок Базовые понятия верстки",
+        "object_id": "10",
+        "object_repr": "Дизайн UI/UX интерфейсов: Старт 2023-08-17: Урок Для чего дизайнить ?",
         "action_flag": 1,
         "change_message": "[{\"added\": {}}]"
     }
@@ -1536,108 +1171,48 @@
     "model": "admin.logentry",
     "pk": 32,
     "fields": {
-        "action_time": "2023-09-10T18:15:18.164Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "action_time": "2023-09-05T13:12:24.047Z",
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
-            "lesson"
+            "tracking"
         ],
-        "object_id": "13",
-        "object_repr": "HTML-Верстка: Старт 2023-07-30: Урок Основные тэги",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "object_id": "25",
+        "object_repr": "Tracking object (25)",
+        "action_flag": 3,
+        "change_message": ""
     }
 },
 {
     "model": "admin.logentry",
     "pk": 33,
     "fields": {
-        "action_time": "2023-09-10T18:15:41.520Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "action_time": "2023-09-05T13:12:28.469Z",
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
-            "lesson"
+            "tracking"
         ],
-        "object_id": "14",
-        "object_repr": "OSINT: Старт 2023-07-20: Урок Что такое OSINT ?",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "object_id": "23",
+        "object_repr": "Tracking object (23)",
+        "action_flag": 3,
+        "change_message": ""
     }
 },
 {
     "model": "admin.logentry",
     "pk": 34,
     "fields": {
-        "action_time": "2023-09-10T18:16:02.123Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
+        "action_time": "2023-09-05T13:12:39.688Z",
+        "user": "Всеволод Смирнов",
         "content_type": [
             "learning",
-            "lesson"
+            "tracking"
         ],
-        "object_id": "15",
-        "object_repr": "OSINT: Старт 2023-07-20: Урок Инструменты OSINT",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 35,
-    "fields": {
-        "action_time": "2023-09-10T18:16:30.261Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
-        "content_type": [
-            "learning",
-            "lesson"
-        ],
-        "object_id": "16",
-        "object_repr": "Дизайн UI/UX интерфейсов: Старт 2023-08-17: Урок Вводный урок",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 36,
-    "fields": {
-        "action_time": "2023-09-10T18:16:39.140Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
-        "content_type": [
-            "learning",
-            "course"
-        ],
-        "object_id": "3",
-        "object_repr": "Data Analysys with python: Старт 2023-09-06",
-        "action_flag": 2,
-        "change_message": "[]"
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 37,
-    "fields": {
-        "action_time": "2023-09-10T18:17:08.003Z",
-        "user": [
-            "vsevolod.smrnv@gmail.com"
-        ],
-        "content_type": [
-            "learning",
-            "lesson"
-        ],
-        "object_id": "17",
-        "object_repr": "Data Analysys with python: Старт 2023-09-06: Урок Зачем нужен DA",
-        "action_flag": 1,
-        "change_message": "[{\"added\": {}}]"
+        "object_id": "22",
+        "object_repr": "Tracking object (22)",
+        "action_flag": 3,
+        "change_message": ""
     }
 }
 ]
