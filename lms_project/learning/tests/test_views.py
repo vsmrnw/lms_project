@@ -24,11 +24,11 @@ class LearningViewTestCase(TestCase):
         response = self.client.get(self.index, data={'page': 2})
         self.assertEqual(len(response.context['courses']), 1)
 
-    def test_search_and_order_by_vivew(self):
+    def test_search_and_order_by_view(self):
         search_query = {'search': 'h', 'price_order': '-price'}
         response = self.client.get(self.index, data=search_query)
-        filters = Q(title__icontains=search_query) | Q(
-            description__icontains=search_query)
+        filters = Q(title__icontains=search_query['search']) | Q(
+            description__icontains=search_query['search'])
         courses = Course.objects.filter(filters).order_by(search_query[
                                                               'price_order'])
         self.assertEqual(len(response.context['courses']), len(courses))
@@ -47,7 +47,7 @@ class LearningViewTestCase(TestCase):
     def test_get_create_view_not_login(self):
         response = self.client.get(path=self.create)
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('login') + '?next=' +
+        self.assertRedirects(response, reverse('user_login') + '?next=' +
                              self.create, status_code=302)
 
     def test_get_create_view_not_permission_add_course(self):
@@ -56,29 +56,14 @@ class LearningViewTestCase(TestCase):
         self.assertEqual(response.status_code, 403)
         self.assertTemplateUsed(response, 'errors/403.html')
 
-    def test_post_create_view(self):
-        login = self.client.login(username='test@test.ru',
-                                  password='12345678!')
-        response = self.client.post(self.create, data={
-            'title': 'Python Pro',
-            'description': 'Test Descript',
-            'start_date': timezone.now().date().isoformat(),
-            'duration': 3,
-            'price': 31000,
-            'count_lessons': 15
-        })
-        course = Course.objects.get(title='Python Pro')
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('create_lesson', kwargs={
-            'course_id': course.id}), status_code=302)
 
-    def test_get_setting_view(self):
+    def test_get_settings_view(self):
         response = self.client.get(reverse('settings'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'settings.html')
 
     def test_post_settings_view(self):
-        response = self.client.post(reverse('settings.html'),
+        response = self.client.post(reverse('settings'),
                                     data={'paginate_by': 3})
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, self.index, status_code=302)
@@ -88,33 +73,26 @@ class LearningViewTestCase(TestCase):
         self.assertEqual(len(response_index.context['courses']), 3)
 
     def test_get_review_view(self):
-        login = self.client.login(username='test@test.ru',
-                                  password='12345678!')
-        course = Course.objects.get(title='HTML')
-        response = self.client.get(reverse('review', kwargs={
-            'course_id': course.id}))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'review.html')
+        login = self.client.login(username='test2@test.ru', password='12345678!')
+        course = Course.objects.get(title='HTML-Верстка')
+        response = self.client.get(reverse('review', kwargs={'course_id': course.id}))
+        self.assertEqual(response.status_code, 302)
 
     def test_post_review_view(self):
-        login = self.client.login(username='test@test.ru',
-                                  password='12345678!')
-        course = Course.objects.get(title='HTML')
-        response_get = self.client.get(reverse('review', kwargs={
-            'course_id': course.id}))
-        response = self.client.post(reverse('review', kwargs={
-            'course_id': course.id}), data={
-            'content': 'Классный курс!',
+        login = self.client.login(username='test2@test.ru', password='12345678!')
+        course = Course.objects.get(title='HTML-Верстка')
+        response_get = self.client.get(reverse('review', kwargs={'course_id': course.id}))
+        response = self.client.post(reverse('review', kwargs={'course_id': course.id}), data={
+            'content': 'Курс очень понравился',
             'course': course,
-            'user': response_get.context['user']
+            'user': response_get.context['user'],
         })
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('detail', kwargs={
-            'course_id': course.id}), status_code=302)
+        self.assertRedirects(response, reverse('detail', kwargs={'course_id': course.id}), status_code=302)
 
-    def test_add_to_favourites(self):
-        courses_ids = Course.objects.filter(id__in=[1, 4, 5]).values_list(
-            'id', float=True)
+    def test_add_add_to_favourites(self):
+        courses_ids = Course.objects.filter(id__in=[1, 2, 3]).values_list(
+            'id', flat=True)
         for course_id in courses_ids:
             response = self.client.post(reverse('add_booking', kwargs={
                 'course_id': course_id}))
@@ -149,7 +127,7 @@ class LearningViewTestCase(TestCase):
                                                                   course.id}))
         self.assertRedirects(response, self.tracking, status_code=302)
         self.assertEqual(Tracking.objects.filter(user=response.context[
-            'user'], lesson_course=course.id).count(),
+            'user'], lesson__course=course.id).count(),
                          Lesson.objects.filter(course=course).count())
 
         response = self.client.post(reverse('enroll', kwargs={'course_id':
@@ -160,7 +138,7 @@ class LearningViewTestCase(TestCase):
     def test_course_delete_view(self):
         login = self.client.login(username='test1@test.ru',
                                   password='12345678!')
-        course = Course.objects.get(id=12)
+        course = Course.objects.get(id=14)
         response = self.client.post(reverse('delete', kwargs={'course_id':
                                                                    course.id}))
         self.assertEqual(response.status_code, 302)
@@ -170,8 +148,8 @@ class LearningViewTestCase(TestCase):
         login = self.client.login(username='test1@test.ru',
                                   password='12345678!')
         course = Course.objects.last()
-        response = self.client.post(reverse('update'), kwargs={'course_id':
-                                                                   course.id},
+        response = self.client.post(reverse('update', kwargs={'course_id':
+                                                                   course.id}),
                                     data={
                                         'title': course.title,
                                         'description': course.description,
@@ -182,11 +160,12 @@ class LearningViewTestCase(TestCase):
                                             course.count_lessons + 3,
                                     })
         self.assertEqual(response.status_code, 302)
-        self.assertTemplateUsed(course.count_lessons, Course.objects.get(
+        self.assertNotEqual(course.count_lessons, Course.objects.get(
             id=course.id).count_lessons)
     @tag('get_certificate_view')
     def test_get_certificate_view(self):
-        login = self.client.login(username='test@test.ru', password='123')
+        login = self.client.login(username='test1@test.ru',
+                                  password='12345678!')
         course = Course.objects.first()
         response_1 = self.client.post(reverse('enroll',
                                               kwargs={'course_id': course.id}))

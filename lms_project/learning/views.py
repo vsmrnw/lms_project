@@ -236,7 +236,7 @@ class SettingFormView(FormView):
 
 @transaction.non_atomic_requests
 @login_required
-@permission_required('learning.add_review', raise_exception=True)
+@permission_required('learning.add_review')
 def review(request, course_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
