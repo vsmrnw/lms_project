@@ -650,6 +650,19 @@
     }
 },
 {
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+        "action_time": "2023-09-13T13:58:52.046Z",
+        "user": 1,
+        "content_type": 3,
+        "object_id": "3",
+        "object_repr": "Ученик",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
     "model": "auth.group",
     "pk": 1,
     "fields": {
@@ -730,6 +743,14 @@
             29,
             32
         ]
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "nd8ytz3q5ga6pbpsuqzpfe7bqltm3ck5",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAURO_C2hCg8AGX7j0DAT5I1UBS2pXp3StJF7qaZN6b-RDnt7W4rafFzUiuRJDLbxd8fKU6AD59fTQaW12XOdCh0JN2em-Y3rfT_TsovpexNlpyk5X6hgW0FozRSsacIoC2GhFCZELAhAwlZ8qLlIMwGTmT0k5kPwC_JDcE:1qgm1P:_eTatvYgpt-q0nhGfKlpEPDZt3U5vM360rDhC4t3mmE",
+        "expire_date": "2024-09-13T13:04:39.412Z"
     }
 },
 {
@@ -1018,7 +1039,7 @@
     "pk": 2,
     "fields": {
         "password": "pbkdf2_sha256$600000$UeHYbKEcqCy4mgSVCe9qot$tuk4y0JK+mvmINTZisfRoFlRY2fJR2RSvZGr0F/T/nQ=",
-        "last_login": "2023-09-13T13:27:28Z",
+        "last_login": "2023-09-14T13:04:39.396Z",
         "is_superuser": false,
         "first_name": "Андрей",
         "last_name": "Спиридонов",
@@ -1041,7 +1062,7 @@
     "pk": 5,
     "fields": {
         "password": "pbkdf2_sha256$600000$VfyVQix3boflF5U7XTRcTG$G1p4bYxxZHGdsei5k8szrLIDMlY0VqS2eO+CmYlkTeg=",
-        "last_login": "2023-09-13T12:07:20.538Z",
+        "last_login": "2023-09-14T12:37:57.829Z",
         "is_superuser": false,
         "first_name": "Максим",
         "last_name": "Арабов",
@@ -1110,7 +1131,7 @@
     "pk": 8,
     "fields": {
         "password": "pbkdf2_sha256$600000$4AHOE4foxTBKEbveQtewko$SKXkoLkaK3b16ii3bGZ9dFlh9Ryi6MernXh+uXHvnW4=",
-        "last_login": "2023-09-12T12:04:37.954Z",
+        "last_login": "2023-09-13T14:11:11.263Z",
         "is_superuser": false,
         "first_name": "Sesss",
         "last_name": "asdsad",

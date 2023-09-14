@@ -79,8 +79,8 @@ class LearningViewTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
 
     def test_post_review_view(self):
-        login = self.client.login(username='test2@test.ru', password='12345678!')
-        course = Course.objects.get(title='HTML-Верстка')
+        login = self.client.login(username='test@test.ru', password='123')
+        course = Course.objects.get(title='Djnago Framework')
         response_get = self.client.get(reverse('review', kwargs={'course_id': course.id}))
         response = self.client.post(reverse('review', kwargs={'course_id': course.id}), data={
             'content': 'Курс очень понравился',
@@ -164,7 +164,7 @@ class LearningViewTestCase(TestCase):
             id=course.id).count_lessons)
     @tag('get_certificate_view')
     def test_get_certificate_view(self):
-        login = self.client.login(username='test1@test.ru',
+        login = self.client.login(username='test@test.ru',
                                   password='12345678!')
         course = Course.objects.first()
         response_1 = self.client.post(reverse('enroll',
@@ -172,9 +172,7 @@ class LearningViewTestCase(TestCase):
 
         response_2 = self.client.post(reverse('get_certificate', kwargs={
             'course_id': course.id}))
-        self.assertEqual(str(response_2.content, 'utf-8'), 'Вы еще не '
-                                                           'завершили курс '
-                                                           'полностью')
+        self.assertEqual(str(response_2.content, 'utf-8'), 'Вы еще не завершили курс полностью')
 
         Tracking.objects.filter(user=response_1.context['user'],
                                 lesson_course=course.id).update(passed=True)
