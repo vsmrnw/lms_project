@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.mail import (send_mail, EmailMultiAlternatives, get_connection,
                               EmailMessage)
+from django.db.models import Count, F
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import Signal, receiver
 from django.template.loader import render_to_string
@@ -14,13 +15,13 @@ get_certificate = Signal()
 
 def check_quantity(sender, instance, **kwargs):
     error = None
-    actual_count = sender.objects.filter(course=instance.course).count()
-    set_count = Course.objects.filter(id=instance.course.id) \
-        .values('count_lessons')[0]['count_lessons']
+    queryset = Course.objects.filter(id=instance.course_id) \
+        .annotate(actual_count=Count('lesson'), set_count=F('count_lessons')) \
+        .values('actual_count', 'set_count')[0]
 
-    if actual_count >= set_count:
-        error = (f'Количество уроков ограничено! Ранее вы указывали что курс '
-                 f'будет содержать {set_count} уроков')
+    if queryset['actual_count'] >= queryset['set_count']:
+        error = (f'Количество уроков ограничено! Ранее вы указывали, что курс '
+                 f'будет содержать {queryset["set_count"]} уроков')
 
     return error
 
@@ -70,11 +71,12 @@ def send_user_certificate(**kwargs):
 @receiver(post_save, sender=Lesson)
 def send_info_email(sender, instance, **kwargs):
     if kwargs['created']:
-        actual_count = sender.objects.filter(course=instance.course).count()
-        set_count = Course.objects.filter(id=instance.course.id) \
-            .values('count_lessons')[0]['count_lessons']
+        queryset = Course.objects.filter(id=instance.course_id) \
+            .annotate(actual_count=Count('lesson'),
+                      set_count=F('count_lessons')) \
+            .values('actual_count', 'set_count')[0]
 
-        if actual_count == set_count:
+        if queryset['actual_count'] == queryset['set_count']:
             template_name = 'email/course_info_email.html'
             course = Course.objects.get(id=instance.course.id)
             context = {
