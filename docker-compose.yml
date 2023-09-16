@@ -1,0 +1,71 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        ENV_FILE: .env
+    image: backend:latest
+    command: bash -c "python manage.py collectstatic --no-input && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    links:
+      - db:db
+    networks:
+      - django-network
+    volumes:
+      - ./lms_project/:/code/
+      - media:/code/media
+      - static:/code/static
+      - .env:/code/.env
+
+  db:
+    env_file:
+      - .env
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - django-network
+
+  nginx:
+    image: nginx:1.20.0-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - static:/code/static
+      - media:/code/media
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+    restart: always
+    networks:
+      - django-network
+
+  redis:
+    image: redis:7.0.12-alpine
+    logging:
+      driver: none
+    networks:
+      - django-network
+
+
+networks:
+    django-network:
+        driver: bridge
+volumes:
+  mysql_data:
+  static:
+  media:
+  entrypoint.sh:

@@ -6,7 +6,7 @@ class LearningModelsTestCase(TestCase):
     fixtures = ['test_data.json']
 
     def test_course_to_str(self):
-        course = Course.objects.get(title='Djnago Framework')
+        course = Course.objects.get(title='Django Framework')
         self.assertEqual(str(course), f'{course.title}')
 
     def test_lesson_to_str(self):

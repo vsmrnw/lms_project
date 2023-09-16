@@ -56,7 +56,6 @@ class LearningViewTestCase(TestCase):
         self.assertEqual(response.status_code, 403)
         self.assertTemplateUsed(response, 'errors/403.html')
 
-
     def test_get_settings_view(self):
         response = self.client.get(reverse('settings'))
         self.assertEqual(response.status_code, 200)
@@ -73,22 +72,27 @@ class LearningViewTestCase(TestCase):
         self.assertEqual(len(response_index.context['courses']), 3)
 
     def test_get_review_view(self):
-        login = self.client.login(username='test2@test.ru', password='12345678!')
+        login = self.client.login(username='test2@test.ru',
+                                  password='12345678!')
         course = Course.objects.get(title='HTML-Верстка')
-        response = self.client.get(reverse('review', kwargs={'course_id': course.id}))
+        response = self.client.get(
+            reverse('review', kwargs={'course_id': course.id}))
         self.assertEqual(response.status_code, 302)
 
     def test_post_review_view(self):
         login = self.client.login(username='test@test.ru', password='123')
-        course = Course.objects.get(title='Djnago Framework')
-        response_get = self.client.get(reverse('review', kwargs={'course_id': course.id}))
-        response = self.client.post(reverse('review', kwargs={'course_id': course.id}), data={
-            'content': 'Курс очень понравился',
-            'course': course,
-            'user': response_get.context['user'],
-        })
+        course = Course.objects.get(title='Django Framework')
+        response_get = self.client.get(
+            reverse('review', kwargs={'course_id': course.id}))
+        response = self.client.post(
+            reverse('review', kwargs={'course_id': course.id}), data={
+                'content': 'Курс очень понравился',
+                'course': course,
+                'user': response_get.context['user'],
+            })
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('detail', kwargs={'course_id': course.id}), status_code=302)
+        self.assertRedirects(response, reverse('detail', kwargs={
+            'course_id': course.id}), status_code=302)
 
     def test_add_add_to_favourites(self):
         courses_ids = Course.objects.filter(id__in=[1, 2, 3]).values_list(
@@ -140,7 +144,7 @@ class LearningViewTestCase(TestCase):
                                   password='12345678!')
         course = Course.objects.get(id=14)
         response = self.client.post(reverse('delete', kwargs={'course_id':
-                                                                   course.id}))
+                                                                  course.id}))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, self.index)
 
@@ -149,7 +153,7 @@ class LearningViewTestCase(TestCase):
                                   password='12345678!')
         course = Course.objects.last()
         response = self.client.post(reverse('update', kwargs={'course_id':
-                                                                   course.id}),
+                                                                  course.id}),
                                     data={
                                         'title': course.title,
                                         'description': course.description,
@@ -162,17 +166,19 @@ class LearningViewTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertNotEqual(course.count_lessons, Course.objects.get(
             id=course.id).count_lessons)
+
     @tag('get_certificate_view')
     def test_get_certificate_view(self):
         login = self.client.login(username='test@test.ru',
-                                  password='12345678!')
+                                  password='123')
         course = Course.objects.first()
         response_1 = self.client.post(reverse('enroll',
                                               kwargs={'course_id': course.id}))
 
         response_2 = self.client.post(reverse('get_certificate', kwargs={
             'course_id': course.id}))
-        self.assertEqual(str(response_2.content, 'utf-8'), 'Вы еще не завершили курс полностью')
+        self.assertEqual(str(response_2.content, 'utf-8'),
+                         'Вы еще не завершили курс полностью')
 
         Tracking.objects.filter(user=response_1.context['user'],
                                 lesson_course=course.id).update(passed=True)
