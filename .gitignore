@@ -139,4 +139,5 @@ GitHub.sublime-settings
 /.idea/misc.xml
 /.idea/vcs.xml
 /lms_project/session/
+/lms_project.sql
 /lms_project/htmlcov/

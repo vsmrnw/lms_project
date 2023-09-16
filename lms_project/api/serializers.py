@@ -50,7 +50,8 @@ class UserSerializer(ModelSerializer):
                 {'name': 'Не указано имя и фамилия для нового пользователя'})
         if len(data.get('description')) > 200:
             errors.append({
-                              'description': 'Описание слишком длинное максимум 200 символов'})
+                              'description': 'Описание слишком длинное '
+                                             'максимум 200 символов'})
         if errors:
             raise serializers.ValidationError({'errors': errors})
         return data

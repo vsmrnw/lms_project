@@ -34,8 +34,9 @@ def analytics(request):
     courses = Course.objects.all()
     reports = [AnalyticReport(course=course) for course in courses]
     analytic_serializer = AnalyticSerializer(reports, many=False,
-                                                   context={'request': request})
+                                             context={'request': request})
     return Response(data=analytic_serializer.data, status=status.HTTP_200_OK)
+
 
 @api_view(['GET', 'POST'])
 def users(request):
@@ -47,7 +48,7 @@ def users(request):
         user_serializer = UserSerializer(data=request.data)
         try:
             if user_serializer.is_valid(raise_exception=True):
-                user_serializer.instance = user_serializer\
+                user_serializer.instance = user_serializer \
                     .save(user_serializer.validated_data)
                 return Response(data=user_serializer.data,
                                 status=status.HTTP_201_CREATED)
@@ -55,8 +56,9 @@ def users(request):
             return Response(data=user_serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
         except django.db.IntegrityError:
-            return Response(data={'email': 'Пользователь с таким email уже существует'},
-                            status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                data={'email': 'Пользователь с таким email уже существует'},
+                status=status.HTTP_400_BAD_REQUEST)
         except Exception as exception:
             return Response(data={'error': str(exception)},
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
