@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from django.db.models import Count, Sum
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, Serializer
@@ -7,7 +6,7 @@ from learning.models import Course, Tracking
 from auth_app.models import User
 
 
-class UserSerializer(ModelSerializer):
+class CourseUserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
@@ -16,8 +15,56 @@ class UserSerializer(ModelSerializer):
         return f'{instance.natural_key()}'
 
 
+class UserSerializer(ModelSerializer):
+    first_name = serializers.CharField(write_only=True, required=True)
+    last_name = serializers.CharField(write_only=True, required=True)
+    description = serializers.CharField(max_length=200, default="",
+                                        required=False, allow_null=True)
+    avatar = serializers.ImageField(use_url=True)
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'password', 'email', 'birthday',
+                  'description', 'avatar',)
+        extra_kwargs = {
+            'password': {
+                'write_only': True
+            }
+        }
+
+    def to_internal_value(self, data):
+        data['first_name'] = ''
+        data['last_name'] = ''
+        return data
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['name'] = instance.get_full_name()
+        return data
+
+    def validate(self, data):
+        errors = []
+        name = data.get('name').split()
+        if not name or len(name) == 1:
+            errors.append(
+                {'name': 'Не указано имя и фамилия для нового пользователя'})
+        if len(data.get('description')) > 200:
+            errors.append({
+                              'description': 'Описание слишком длинное максимум 200 символов'})
+        if errors:
+            raise serializers.ValidationError({'errors': errors})
+        return data
+
+    def save(self, validated_data):
+        name = validated_data.pop('name').split()
+        validated_data['first_name'] = name[0]
+        validated_data['last_name'] = name[1]
+        user = User(**validated_data)
+        user.set_password(validated_data['password'][0])
+        user.save()
+
 class CourseSerializer(ModelSerializer):
-    authors = UserSerializer(many=True)
+    authors = CourseUserSerializer(many=True)
 
     class Meta:
         model = Course
@@ -44,18 +91,19 @@ class AnalyticCourseSerializer(Serializer):
         return f'{request.scheme}://{request.META["HTTP_HOST"]}{instance.course.get_absolute_url()}'
 
     def get_count_students(self, instance) -> int:
-        total_students = Tracking.objects\
-            .filter(lesson__course=instance.course.id).values('lesson__course')\
+        total_students = Tracking.objects \
+            .filter(lesson__course=instance.course.id).values('lesson__course') \
             .aggregate(Count('user', distinct=True))
         return total_students['user__count']
 
     def get_percent_passed(self, instance) -> float:
         course_id = instance.course.id
-        students = Tracking.objects\
+        students = Tracking.objects \
             .filter(lesson__course=course_id).values('user').distinct()
         users_percent = list()
         for id in range(len(students)):
-            percents = Tracking.objects.filter(lesson__course=course_id, user=students[id]['user'])\
+            percents = Tracking.objects.filter(lesson__course=course_id,
+                                               user=students[id]['user']) \
                 .aggregate(total=Count('lesson'), fact=Sum('passed'))
             user_percent = float(percents['fact'] / percents['total'] * 100)
             users_percent.append(user_percent)
@@ -69,9 +117,11 @@ class AnalyticCourseSerializer(Serializer):
     def get_date(self, instance):
         return datetime.now()
 
+
 class AnalyticSerializer(Serializer):
     report_date = serializers.SerializerMethodField()
     data = serializers.SerializerMethodField()
+
     def get_report_date(self, instance):
         return datetime.now()
 
