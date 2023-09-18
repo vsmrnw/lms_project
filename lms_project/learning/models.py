@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 
 
 class Course(models.Model):
@@ -23,11 +24,14 @@ class Course(models.Model):
         verbose_name = 'Курс'
         ordering = ['title']
         permissions = (
-            ('modify_course',  'Can modify course content'),
+            ('modify_course', 'Can modify course content'),
         )
 
     def __str__(self):
         return f'{self.title}'
+
+    def get_absolute_url(self):
+        return reverse('detail', args=[str(self.pk)])
 
 
 class Lesson(models.Model):
@@ -43,7 +47,7 @@ class Lesson(models.Model):
         verbose_name = 'Урок'
         ordering = ['course']
         permissions = (
-            ('modify_lesson',  'Can modify lesson content'),
+            ('modify_lesson', 'Can modify lesson content'),
         )
 
     def __str__(self):
@@ -76,5 +80,5 @@ class Review(models.Model):
     class Meta:
         verbose_name_plural = 'Отзывы'
         verbose_name = 'Отзыв'
-        ordering = ('-send_date', )
-        unique_together = ('user', 'course', )
+        ordering = ('-send_date',)
+        unique_together = ('user', 'course',)
