@@ -25,7 +25,6 @@ class CourseSerializer(ModelSerializer):
 
 
 class AnalyticCourseSerializer(Serializer):
-    date = serializers.SerializerMethodField()
     course = serializers.SerializerMethodField()
     views = serializers.SerializerMethodField()
     count_students = serializers.SerializerMethodField()
@@ -69,3 +68,13 @@ class AnalyticCourseSerializer(Serializer):
 
     def get_date(self, instance):
         return datetime.now()
+
+class AnalyticSerializer(Serializer):
+    report_date = serializers.SerializerMethodField()
+    data = serializers.SerializerMethodField()
+    def get_report_date(self, instance):
+        return datetime.now()
+
+    def get_data(self, instance):
+        return AnalyticCourseSerializer(instance=instance, many=True,
+                                        context=self.context).data
