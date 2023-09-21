@@ -1,32 +1,41 @@
 import django.db
-from django.db.models import ObjectDoesNotExist
 from rest_framework import status, serializers
 from rest_framework.decorators import api_view
+from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
+
 from auth_app.models import User
 from learning.models import Course
-from .serializers import CourseSerializer, AnalyticCourseSerializer, \
-    AnalyticSerializer, UserSerializer
 from .analytics import AnalyticReport
+from .serializers import CourseSerializer, AnalyticSerializer, UserSerializer
 
 
-@api_view(['GET'])
-def courses(request):
-    courses = Course.objects.all()
-    courses_serializer = CourseSerializer(instance=courses, many=True)
-    return Response(data=courses_serializer.data, status=status.HTTP_200_OK)
+class CourseListAPIView(ListAPIView):
+    name = 'Список курсов'
+    description = 'Информация о всех курсах, размещенных на платформе Edushka'
+    serializer_class = CourseSerializer
+    pagination_class = PageNumberPagination
+    filter_backends = (SearchFilter, OrderingFilter,)
+    search_fields = ('title', 'description', 'authors__first_name',
+                     'authors__last_name', 'start_date')
+    ordering_fields = ('start_date', 'price')
+    ordering = 'title'
+
+    def get_queryset(self):
+        return Course.objects.all()
 
 
-@api_view(['GET'])
-def courses_id(request, course_id):
-    try:
-        course = Course.objects.get(id=course_id)
-        course_serializer = CourseSerializer(instance=course, many=False)
-        return Response(data=course_serializer.data, status=status.HTTP_200_OK)
-    except ObjectDoesNotExist as exception:
-        return Response(data={'error': 'Запрашиваемый Курс отсутствует в '
-                                       'системе'},
-                        status=status.HTTP_404_NOT_FOUND)
+class CourseRetrieveAPIView(RetrieveAPIView):
+    name = 'Курс'
+    description = 'Получение курса по id, переданному в URL'
+    serializer_class = CourseSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'course_id'
+
+    def get_queryset(self):
+        return Course.objects.all()
 
 
 @api_view(['GET'])

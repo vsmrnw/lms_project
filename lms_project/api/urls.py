@@ -1,9 +1,11 @@
 from django.urls import path
-from api.views import courses, courses_id, analytics, users
+from api.views import analytics, users, CourseListAPIView, \
+    CourseRetrieveAPIView
 
 urlpatterns = [
-    path('courses/', courses, name='courses'),
-    path('courses/<int:course_id>', courses_id, name='courses_id'),
+    path('courses/', CourseListAPIView.as_view(), name='courses'),
+    path('courses/<int:course_id>', CourseRetrieveAPIView.as_view(),
+         name='courses_id'),
     path('analytics/', analytics, name='analytics'),
     path('users/', users, name='user'),
-]
+    ]
