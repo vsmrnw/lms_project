@@ -19,8 +19,8 @@ class CourseListAPIView(ListAPIView):
     pagination_class = PageNumberPagination
     filter_backends = (SearchFilter, OrderingFilter,)
     search_fields = ('title', 'description', 'authors__first_name',
-                     'authors__last_name', 'start_date')
-    ordering_fields = ('start_date', 'price')
+                     'authors__last_name', 'start_date', )
+    ordering_fields = ('start_date', 'price', )
     ordering = 'title'
 
     def get_queryset(self):
