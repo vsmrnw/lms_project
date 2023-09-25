@@ -207,7 +207,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 3,
     'ORDERING_PARAM': 'order_by',
     'DATE_INPUT_FORMATS': [
-        ('%d.%m.%Y', ),
+        '%d.%m.%Y',
     ],
     'DATE_FORMAT': '%d.%m.%Y',
 }

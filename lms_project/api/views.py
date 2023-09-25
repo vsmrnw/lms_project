@@ -5,7 +5,7 @@ from rest_framework.authentication import BasicAuthentication, \
 from rest_framework.decorators import api_view
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import ListAPIView, RetrieveAPIView, \
-    ListCreateAPIView
+    ListCreateAPIView, CreateAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAdminUser
 from rest_framework.renderers import AdminRenderer
@@ -14,20 +14,43 @@ from rest_framework.response import Response
 from auth_app.models import User
 from learning.models import Course
 from .analytics import AnalyticReport
+from .permissions import IsAuthor
 from .serializers import CourseSerializer, AnalyticSerializer, UserSerializer, \
-    UserAdminSerializer
+    UserAdminSerializer, CourseUserSerializer
 
 
 class UserForAdminView(ListCreateAPIView):
     name = 'Список пользователей LMS Edushka'
     serializer_class = UserAdminSerializer
     pagination_class = PageNumberPagination
-    authentication_classes = (BasicAuthentication, )
-    permission_classes = (IsAdminUser, )
-    renderer_classes = (AdminRenderer, )
+    authentication_classes = (BasicAuthentication,)
+    permission_classes = (IsAdminUser,)
+    renderer_classes = (AdminRenderer,)
 
     def get_queryset(self):
         return User.objects.all()
+
+
+class CourseCreateView(CreateAPIView):
+    name = 'Создать курс'
+    serializer_class = CourseSerializer
+    permission_classes = (IsAuthor,)
+    authentication_classes = (BasicAuthentication,)
+
+    def perform_create(self, serializer):
+        serializer.save(authors=(self.request.user,))
+
+
+class CourseDeleteView(RetrieveAPIView):
+    name = 'Удалить курс'
+    serializer_class = CourseSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'course_id'
+    authentication_classes = (BasicAuthentication, )
+    permission_classes = (IsAuthor,)
+
+    def get_queryset(self):
+        return Course.objects.all()
 
 
 class CourseListAPIView(ListAPIView):
