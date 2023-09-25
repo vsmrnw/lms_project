@@ -15,6 +15,13 @@ class CourseUserSerializer(ModelSerializer):
         return f'{instance.natural_key()}'
 
 
+class UserAdminSerializer(ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = '__all__'
+
+
 class UserSerializer(ModelSerializer):
     first_name = serializers.CharField(write_only=True, required=True)
     last_name = serializers.CharField(write_only=True, required=True)
@@ -50,8 +57,8 @@ class UserSerializer(ModelSerializer):
                 {'name': 'Не указано имя и фамилия для нового пользователя'})
         if len(data.get('description')) > 200:
             errors.append({
-                              'description': 'Описание слишком длинное '
-                                             'максимум 200 символов'})
+                'description': 'Описание слишком длинное '
+                               'максимум 200 символов'})
         if errors:
             raise serializers.ValidationError({'errors': errors})
         return data
@@ -63,6 +70,7 @@ class UserSerializer(ModelSerializer):
         user = User(**validated_data)
         user.set_password(validated_data['password'][0])
         user.save()
+
 
 class CourseSerializer(ModelSerializer):
     authors = CourseUserSerializer(many=True)

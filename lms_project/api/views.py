@@ -1,26 +1,45 @@
 import django.db
 from rest_framework import status, serializers
+from rest_framework.authentication import BasicAuthentication, \
+    TokenAuthentication
 from rest_framework.decorators import api_view
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, \
+    ListCreateAPIView
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import IsAdminUser
+from rest_framework.renderers import AdminRenderer
 from rest_framework.response import Response
 
 from auth_app.models import User
 from learning.models import Course
 from .analytics import AnalyticReport
-from .serializers import CourseSerializer, AnalyticSerializer, UserSerializer
+from .serializers import CourseSerializer, AnalyticSerializer, UserSerializer, \
+    UserAdminSerializer
+
+
+class UserForAdminView(ListCreateAPIView):
+    name = 'Список пользователей LMS Edushka'
+    serializer_class = UserAdminSerializer
+    pagination_class = PageNumberPagination
+    authentication_classes = (BasicAuthentication, )
+    permission_classes = (IsAdminUser, )
+    renderer_classes = (AdminRenderer, )
+
+    def get_queryset(self):
+        return User.objects.all()
 
 
 class CourseListAPIView(ListAPIView):
     name = 'Список курсов'
     description = 'Информация о всех курсах, размещенных на платформе Edushka'
+    authentication_classes = (TokenAuthentication,)
     serializer_class = CourseSerializer
     pagination_class = PageNumberPagination
     filter_backends = (SearchFilter, OrderingFilter,)
     search_fields = ('title', 'description', 'authors__first_name',
-                     'authors__last_name', 'start_date', )
-    ordering_fields = ('start_date', 'price', )
+                     'authors__last_name', 'start_date',)
+    ordering_fields = ('start_date', 'price',)
     ordering = 'title'
 
     def get_queryset(self):

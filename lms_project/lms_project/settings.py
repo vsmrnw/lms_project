@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'learning.apps.LearningConfig',
     'auth_app.apps.AuthAppConfig',
     'rest_framework',
+    'rest_framework.authtoken',
     'api',
 ]
 
@@ -196,6 +197,10 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
     ],
     'URL_FORMAT_OVERRIDE': 'to',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
