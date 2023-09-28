@@ -4,9 +4,8 @@ from rest_framework.permissions import BasePermission
 class IsAuthor(BasePermission):
 
     def has_permission(self, request, view):
-        if (
-                request.user and request.user.is_authenticated) and request.user.groups.filter(
-            name='Автор').exists():
+        if ((request.user and request.user.is_authenticated) and
+                request.user.groups.filter(name='Автор').exists()):
             return True
         return False
 
