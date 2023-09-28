@@ -2,7 +2,7 @@ from datetime import datetime
 from django.db.models import Count, Sum
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, Serializer
-from learning.models import Course, Tracking
+from learning.models import Course, Tracking, Lesson
 from auth_app.models import User
 
 
@@ -16,7 +16,6 @@ class CourseUserSerializer(ModelSerializer):
 
 
 class UserAdminSerializer(ModelSerializer):
-
     class Meta:
         model = User
         fields = '__all__'
@@ -137,3 +136,69 @@ class AnalyticSerializer(Serializer):
     def get_data(self, instance):
         return AnalyticCourseSerializer(instance=instance, many=True,
                                         context=self.context).data
+
+
+class TrackingListSerializer(serializers.ListSerializer):
+
+    def save(self, **kwargs):
+        course = kwargs.pop('lesson')
+        is_existed = Tracking.objects.filter(user=kwargs['user'],
+                                             lesson__course__id=course).exists()
+        if is_existed:
+            raise serializers.ValidationError({'error': 'Вы уже записаны на '
+                                                        'курс'})
+        else:
+            lessons = Lesson.objects.filter(course__id=course)
+            records = [Tracking(lesson=lesson, user=kwargs['user'],
+                                passed=False) for lesson in lessons]
+            trackings = Tracking.objects.bulk_create(records)
+            return trackings
+
+    def update(self, instances, validated_data):
+        passed_list = list(map(lambda x: x['passed'], validated_data))
+        updated_instances = []
+
+        for id, instance in enumerate(instances):
+            instance.passed = passed_list[id]
+            updated_instances.append(instance)
+
+        Tracking.objects.bulk_update(objs=updated_instances, fields=(
+            'passed', ))
+        return updated_instances
+
+
+class StudentTrackingSerializer(ModelSerializer):
+    lesson = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(),
+                                                label='Курс',
+                                                source='lesson.name')
+    passed = serializers.ReadOnlyField()
+    list_serializer_class = TrackingListSerializer
+
+    class Meta:
+        model = Tracking
+        fields = ('lesson', 'passed',)
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        if isinstance(instance, Tracking):
+            data['course'] = instance.lesson.course.title
+        return data
+
+
+class CoursePKRelatedField(serializers.PrimaryKeyRelatedField):
+
+    def get_queryset(self):
+        return Course.objects.filter(authors=self.context['request'].user)
+
+
+class AuthorTrackingSerializer(StudentTrackingSerializer):
+    passed = serializers.BooleanField(label='Пройден?')
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(),
+                                              source='user.get_full_name',
+                                              label='Ученик')
+    lesson = CoursePKRelatedField(source='lesson.name', label='Курс')
+
+    class Meta:
+        model = Tracking
+        fields = '__all__'
+        list_serializer_class = TrackingListSerializer
