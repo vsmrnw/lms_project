@@ -34,7 +34,8 @@ class AnalyticViewSet(ViewSet):
                                                  context={'request': request})
         return Response(data=analytic_serializer.data,
                         status=status.HTTP_200_OK)
-    @action(methods=('get', ), detail=False, url_path='(?P<course_id>[^/.]+)')
+
+    @action(methods=('get',), detail=False, url_path='(?P<course_id>[^/.]+)')
     def detail_analytic(self, request, course_id):
         course = get_object_or_404(Course, id=course_id)
         reports = [AnalyticReport(course=course)]
@@ -48,7 +49,7 @@ class AnalyticViewSet(ViewSet):
 
 
 class TrackingStudentViewSet(ModelViewSet):
-    http_method_names = ('get', 'post', 'options', )
+    http_method_names = ('get', 'post', 'options',)
     serializer_class = StudentTrackingSerializer
     permission_classes = (IsAuthenticated, IsStudent,)
     lookup_field = 'lesson__course'
@@ -65,9 +66,9 @@ class TrackingStudentViewSet(ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         tracking = self.get_object()
         tracking_serializer = self.get_serializer(tracking, many=True)
-        return Response(tracking_serializer)
+        return Response(tracking_serializer.data)
 
-    @action(methods=('post', ), detail=False, name='Запись на курс')
+    @action(methods=('post',), detail=False, name='Запись на курс')
     def enroll(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data, many=True)
         serializer.is_valid(raise_exception=True)
@@ -83,11 +84,11 @@ class TrackingStudentViewSet(ModelViewSet):
 
 
 class TrackingAuthorViewSet(TrackingStudentViewSet):
-    http_method_names = ('get', 'post', 'patch', 'options', )
+    http_method_names = ('get', 'post', 'patch', 'options',)
     serializer_class = AuthorTrackingSerializer
-    permission_classes = (IsAuthenticated, IsAuthor, )
-    filter_backends = (SearchFilter, OrderingFilter, )
-    search_fields = ('user__last_name', 'user__first_name', 'lesson__name', )
+    permission_classes = (IsAuthenticated, IsAuthor,)
+    filter_backends = (SearchFilter, OrderingFilter,)
+    search_fields = ('user__last_name', 'user__first_name', 'lesson__name',)
 
     def get_queryset(self):
         return Tracking.objects.filter(
@@ -96,9 +97,9 @@ class TrackingAuthorViewSet(TrackingStudentViewSet):
     def perform_create(self, serializer):
         data = self.request.data
         return serializer.save(user=User.objects.get(id=data['user']),
-                                                     lesson=data['lesson'])
+                               lesson=data['lesson'])
 
-    @action(methods=('patch', ), detail=False, name='Отметка о сдаче урока')
+    @action(methods=('patch',), detail=False, name='Отметка о сдаче урока')
     def update_passed(self, request, *args, **kwargs):
         data = sorted(request.data, key=lambda x: int(x['id']))
         ids = list(map(lambda x: x['id'], data))
@@ -111,7 +112,6 @@ class TrackingAuthorViewSet(TrackingStudentViewSet):
 
     def perform_update(self, serializer):
         serializer.update(serializer.instance, serializer.validated_data)
-
 
 
 class UserForAdminView(ListCreateAPIView):
@@ -173,6 +173,7 @@ class CourseRetrieveAPIView(RetrieveAPIView):
 
     def get_queryset(self):
         return Course.objects.all()
+
 
 @api_view(['GET', 'POST'])
 def users(request):
