@@ -72,7 +72,7 @@ class UserSerializer(ModelSerializer):
 
 
 class CourseSerializer(ModelSerializer):
-    authors = CourseUserSerializer(many=True)
+    authors = CourseUserSerializer(many=True, read_only=True)
 
     class Meta:
         model = Course
@@ -172,11 +172,11 @@ class StudentTrackingSerializer(ModelSerializer):
                                                 label='Курс',
                                                 source='lesson.name')
     passed = serializers.ReadOnlyField()
-    list_serializer_class = TrackingListSerializer
 
     class Meta:
         model = Tracking
         fields = ('lesson', 'passed',)
+        list_serializer_class = TrackingListSerializer
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
