@@ -47,7 +47,7 @@ class LearningViewTestCase(TestCase):
     def test_get_create_view_not_login(self):
         response = self.client.get(path=self.create)
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, reverse('user_login') + '?next=' +
+        self.assertRedirects(response, reverse('login') + '?next=' +
                              self.create, status_code=302)
 
     def test_get_create_view_not_permission_add_course(self):

@@ -10,9 +10,9 @@ from .views import *
 
 urlpatterns = [
     path('login/', cache_control(private=True)(UserLoginView.as_view()),
-         name='user_login'),
+         name='login'),
     path('register/', cache_control(private=True)(RegisterView.as_view()), name='register'),
-    path('logout/', LogoutView.as_view(next_page='user_login'), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     # Обработчики для смены пароля
     path('password_change/', PasswordChangeView.as_view(), name='password_change'),
     path('password_change/done', PasswordChangeDoneView.as_view(),

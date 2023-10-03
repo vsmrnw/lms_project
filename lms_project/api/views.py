@@ -51,7 +51,7 @@ class AnalyticViewSet(ViewSet):
 class TrackingStudentViewSet(ModelViewSet):
     http_method_names = ('get', 'post', 'options',)
     serializer_class = StudentTrackingSerializer
-    permission_classes = (IsAuthenticated, IsStudent,)
+    permission_classes = (IsAuthenticated, IsStudent, )
     lookup_field = 'lesson__course'
     lookup_url_kwarg = 'course_id'
 

@@ -174,9 +174,9 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 AUTH_USER_MODEL = "auth_app.User"
 
-LOGIN_URL = 'user_login'
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
-LOGOUT_URL = 'user_logout'
+LOGOUT_URL = 'logout'
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -200,7 +200,8 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication'
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
