@@ -9,7 +9,7 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView, \
     ListCreateAPIView, CreateAPIView
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
-from rest_framework.renderers import AdminRenderer
+from rest_framework.renderers import AdminRenderer, JSONRenderer
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet, ModelViewSet
 
@@ -117,10 +117,9 @@ class TrackingAuthorViewSet(TrackingStudentViewSet):
 class UserForAdminView(ListCreateAPIView):
     name = 'Список пользователей LMS Edushka'
     serializer_class = UserAdminSerializer
-    pagination_class = PageNumberPagination
     authentication_classes = (BasicAuthentication,)
     permission_classes = (IsAdminUser,)
-    renderer_classes = (AdminRenderer,)
+    renderer_classes = [JSONRenderer]
 
     def get_queryset(self):
         return User.objects.all()
