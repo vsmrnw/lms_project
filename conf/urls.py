@@ -1,5 +1,5 @@
 """
-URL configuration for lms_project project.
+URL configuration for conf project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -19,9 +19,9 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-handler500 = 'lms_project.views.server_error'
-handler404 = 'lms_project.views.page_not_found'
-handler403 = 'lms_project.views.forbidden'
+handler500 = 'conf.views.server_error'
+handler404 = 'conf.views.page_not_found'
+handler403 = 'conf.views.forbidden'
 
 
 urlpatterns = [
