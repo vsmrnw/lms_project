@@ -4,7 +4,7 @@
 *.pyc
 __pycache__
 db.sqlite3
-media
+
 
 # Backup files #
 *.bak
@@ -138,6 +138,7 @@ GitHub.sublime-settings
 /.idea/inspectionProfiles/profiles_settings.xml
 /.idea/misc.xml
 /.idea/vcs.xml
-/lms_project/session/
+/conf/session/
 /lms_project.sql
-/lms_project/htmlcov/
+/conf/htmlcov/
+/htmlcov/
