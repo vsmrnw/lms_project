@@ -57,7 +57,7 @@ SESSION_COOKIE_SAMESITE = None
 REMEMBER_KEY = 'is_remember'
 REMEMBER_AGE = 60 * 60 * 24 * 365
 
-ROOT_URLCONF = 'lms_project.urls'
+ROOT_URLCONF = 'conf.urls'
 
 TEMPLATES = [
     {
@@ -76,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'lms_project.wsgi.application'
+WSGI_APPLICATION = 'conf.wsgi.application'
 
 DATABASE_NAME = env('DATABASE_NAME')
 DATABASE_USER = env('DATABASE_USER')
